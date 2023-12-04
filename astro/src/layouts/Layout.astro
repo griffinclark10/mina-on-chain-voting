@@ -1,0 +1,24 @@
+---
+const title: string = 'Home';
+const description: string = 'A simple, fixed width user interface layout with a top navigation bar and a full-width header.';
+---
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{title}</h1>
+                <h2>{description}</h2>
+            </div>
+        </div>
+    </div>
+</header>
+<slot />
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>© Company 2017-2018</p>
+            </div>
+        </div>
+    </div>
+</footer>
