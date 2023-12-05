@@ -1,16 +1,21 @@
 ---
-import {Header} from '../../components/layout-header';
-const title: string = 'Home';
-const description: string = 'A simple, fixed width user interface layout with a top navigation bar and a full-width header.';
+import LayoutFooter from "../components/layout-footer.astro";
+import LayoutHeader from "../components/layout-header.astro";
+import { siteConfig } from "../../common/config";
 ---
-<Header />
-<slot />
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p>© Company 2017-2018</p>
-            </div>
-        </div>
-    </div>
-</footer>
+<html lang="en" suppressHydrationWarning>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" />
+        <title> Mina - {siteConfig.title} </title>
+    </head>
+    <body class="bg-background antialiased">
+        <LayoutHeader/>
+            <slot />
+        <LayoutFooter>
+    </body>
+</html>
+
