@@ -1,9 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/page-header/page-header.astro";
+import PageHeaderHeading from "../components/page-header/heading.astro"
 ---
 <Layout>
-	<body>
-		<h1 class="p-10 font-bold">Astro</h1>
-	</body>
+	<PageHeader className="hidden md:block pb-6">
+        <PageHeaderHeading>Mina On-Chain Voting</PageHeaderHeading>
+	</PageHeader>
 </Layout>
 
