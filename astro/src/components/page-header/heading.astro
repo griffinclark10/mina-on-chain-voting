@@ -1,0 +1,8 @@
+---
+import { cn } from '../../../common/utils';
+
+const { className } = Astro.props;
+---
+<h1 class={cn('text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]', className)}>
+      <slot />
+</h1>
