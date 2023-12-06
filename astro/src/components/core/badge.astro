@@ -1,0 +1,8 @@
+---
+import { cn } from '../../../common/utils';
+import { badgeVariants, BadgeProps } from '../ts/badgeVariants';
+
+const {variant, className} = Astro.props as BadgeProps;
+
+export const badgeClass = cn(badgeVariants({ variant }), className)
+---
