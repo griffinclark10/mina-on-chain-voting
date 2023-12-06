@@ -1,0 +1,26 @@
+---
+import {rows} from '../../../common/fakedata'
+import TableHeader from './header.astro'
+// Define the interface for your data
+interface TableProps {
+  headers: string[];
+  rows: { key: string; category: string; title: string; status: string; votingStart: string; votingEnd: string; resultsLink: string }[];
+}
+---
+
+<table>
+  <TableHeader />
+  <tbody>
+    {rows.map((row) => (
+      <tr>
+        <td>{row.key}</td>
+        <td>{row.category}</td>
+        <td>{row.title}</td>
+        <td>{row.status}</td>
+        <td>{row.votingStart}</td>
+        <td>{row.votingEnd}</td>
+        <td><a href={row.resultsLink}>Results</a></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
