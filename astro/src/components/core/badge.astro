@@ -2,7 +2,12 @@
 import { cn } from '../../../common/utils';
 import { badgeVariants, BadgeProps } from '../ts/badgeVariants';
 
-const {variant, className} = Astro.props as BadgeProps;
+// Make sure you destructure the props inside the script tag.
+const { variant = 'default', className } = Astro.props as BadgeProps;
 
-export const badgeClass = cn(badgeVariants({ variant }), className)
+// Then you create the `badgeClass`.
+export const badgeClass = cn(badgeVariants({ variant }), className);
 ---
+<div className={badgeClass} />
+
+

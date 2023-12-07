@@ -1,11 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/page-header/page-header.astro";
-import PageHeaderHeading from "../components/page-header/heading.astro"
+import PageHeaderHeading from "../components/page-header/heading.astro";
+import PageHeaderDescription from "../components/page-header/description.astro";
+import Table from "../components/table/table.astro";
+import HoverCard from "../components/core/hover-card.astro";
 ---
 <Layout>
-	<PageHeader className="hidden md:block pb-6">
-        <PageHeaderHeading>Mina On-Chain Voting</PageHeaderHeading>
-	</PageHeader>
+	<div className="container relative">
+		<PageHeader className="hidden md:block pb-6">
+			<PageHeaderHeading>Mina On-Chain Voting</PageHeaderHeading>
+			<PageHeaderDescription>View and track the progress of Mina Improvement Proposals (MIPs).</PageHeaderDescription>
+		</PageHeader>
+
+		<PageHeader className="block md:hidden pb-6 text-center">
+			<PageHeaderHeading className="text-2xl">Mina On-Chain Voting</PageHeaderHeading>
+			<PageHeaderDescription>View and track the progress of Mina Improvement Proposals (MIPs).</PageHeaderDescription>
+		</PageHeader>
+	
+		<Table />
+
+	</div>
+	
+
 </Layout>
 

@@ -1,0 +1,10 @@
+---
+import {headers} from '../../../common/fakedata';
+---
+<thead class="[&_tr]:border-b">
+    <tr class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+      {headers.map((header) => (
+        <th>{header}</th>
+      ))}
+    </tr>
+</thead>

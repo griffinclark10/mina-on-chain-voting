@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from '../../common/config';
 import { cn } from '../../common/utils';
-// import { Icons } from './core/icons';
+import * as Icon from '@astropub/icons';
 import  {buttonVariants}  from './ts/buttonVariants';
 // import {ThemeToggle} from './core/theme-toggle';
 import NavigationDesktop from './layout-nav-desktop.astro';
@@ -42,7 +42,7 @@ import NavigationDesktop from './layout-nav-desktop.astro';
                 'w-9 px-0'
               )}
             >
-            <i class="fa-brands fa-github"/>
+            <Icon.GitHubLogo />
               <span class="sr-only">GitHub</span>
             </div>
           </a>

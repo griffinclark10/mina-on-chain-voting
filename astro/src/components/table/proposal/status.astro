@@ -1,0 +1,41 @@
+---
+import { ProposalStatus } from '../../../../models/index';
+import {CountdownTimer, Stopwatch, QuestionMarkCircled, CheckCircled} from '@astropub/icons';
+import HoverCard from '../../core/hover-card.astro';
+
+export interface ProposalTableStatus {
+  value: ProposalStatus;
+  icon: any;
+  description: string;
+};
+
+export const proposalTableStatuses: ProposalTableStatus[] = [
+{
+    value: 'Pending',
+    icon: CountdownTimer,
+    description: 'The voting period has not begun.',
+  },
+    {
+    value: 'In Progress',
+    icon: Stopwatch,
+    description: 'Voting is in progress.',
+  },
+  {
+    value: 'In Review',
+    icon: QuestionMarkCircled,
+    description: 'Voting has closed and the results are being verified.',
+  },
+  {
+    value: 'Completed',
+    icon: CheckCircled,
+    description: 'Voting has finished and the results have been verified.',
+  },
+];
+
+const {status} = Astro.props as {status: ProposalStatus};
+const {icon, description} = proposalTableStatuses.find(({value}) => value === status) as ProposalTableStatus;
+---
+<td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+    <HoverCard value={status} icon={icon} description={description} />
+</td>
+

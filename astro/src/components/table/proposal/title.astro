@@ -1,0 +1,15 @@
+---
+import { cn } from '../../../../common/utils';
+import { badgeVariants } from '../../ts/badgeVariants'
+
+const {title, category} = Astro.props;
+---
+<td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+    <div class="flex space-x-2 min-w-[350px]">
+        <div class={cn(badgeVariants({variant: 'outline'}), 'bg-gray-200/10 dark:bg-gray-500/10')}>
+            {category}
+        </div>
+        <span class="truncate font-medium">{title}</span>
+    </div>
+</td>
+

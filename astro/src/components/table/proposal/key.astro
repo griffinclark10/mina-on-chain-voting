@@ -1,0 +1,8 @@
+---
+const {key} = Astro.props;
+---
+<td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+    <div class="flex pl-2.5">
+        <span class="whitespace-nowrap">{key}</span>
+    </div>
+</td>
