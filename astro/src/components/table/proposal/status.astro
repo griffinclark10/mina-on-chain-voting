@@ -35,7 +35,7 @@ export const proposalTableStatuses: ProposalTableStatus[] = [
 const {status} = Astro.props as {status: ProposalStatus};
 const {icon, description} = proposalTableStatuses.find(({value}) => value === status) as ProposalTableStatus;
 ---
-<td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+<td class="p-2 align-middle">
     <HoverCard value={status} icon={icon} description={description} />
 </td>
 

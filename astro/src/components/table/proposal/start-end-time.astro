@@ -1,0 +1,9 @@
+---
+import moment from 'moment';
+
+const { time } = Astro.props as { time: number };
+const startDate = moment(new Date(time)).utc();
+---
+<td class="p-2 align-middle">
+    <span className="whitespace-nowrap">{startDate.format('YYYY-MM-DD - hh:mm').toString()}</span>
+</td>

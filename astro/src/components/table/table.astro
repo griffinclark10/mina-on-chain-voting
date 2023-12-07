@@ -4,13 +4,14 @@ import TableHeader from './header.astro'
 import Title from './proposal/title.astro';
 import Key from './proposal/key.astro';
 import Status from './proposal/status.astro';
-// Define the interface for your data
+import StartEndTime from './proposal/start-end-time.astro';
+
 interface TableProps {
   headers: string[];
   rows: { key: string; category: string; title: string; status: string; votingStart: string; votingEnd: string; resultsLink: string }[];
 }
 ---
-<div class="rounded-md border w-full overflow-x-auto overflow-y">
+<div class="rounded-md border w-full overflow-auto">
   <table class="w-full caption-bottom text-sm">
     <TableHeader />
     <tbody class="[&_tr:last-child]:border-0">
@@ -19,8 +20,8 @@ interface TableProps {
           <Key key={row.key}/>
           <Title title={row.title} category={row.category}/>
           <Status status={row.status}/>
-          <td>{row.votingStart}</td>
-          <td>{row.votingEnd}</td>
+          <StartEndTime time={row.votingStart}/>
+          <StartEndTime time={row.votingEnd}/>
           <td><a href={row.resultsLink}>Results</a></td>
         </tr>
       ))}
