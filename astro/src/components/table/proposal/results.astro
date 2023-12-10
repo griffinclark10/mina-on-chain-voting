@@ -1,0 +1,24 @@
+---
+import { cn } from '../../../../common/utils';
+import { buttonVariants } from '../../ts/buttonVariants.ts';
+import { ExternalLinkIcon } from '@astropub/icons/ExternalLink';
+import * as Icon from '@astropub/icons';
+
+const { status, id } = Astro.props as { status: String, id: number };
+const buttonText = status === 'Completed' ? 'Results' : 'Go Vote';
+---
+<td class="p-2 align-middle">
+    <a href={
+        status === 'Completed'
+          ? `/proposal/${id}/results`
+          : `/proposal/${id}`
+      }>
+        <div class={cn(buttonVariants({variant: 'ghost',}),'w-9 px-0')}>
+        <div class="flex items-center">
+            <span class="ml-1 whitespace-nowrap">{buttonText}</span> 
+            <Icon.ExternalLink className=" w-4 h-4" />
+        </div>
+        <span class="sr-only">Open menu</span>
+      </div>
+    </a>
+</td>

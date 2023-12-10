@@ -5,6 +5,7 @@ import Title from './proposal/title.astro';
 import Key from './proposal/key.astro';
 import Status from './proposal/status.astro';
 import StartEndTime from './proposal/start-end-time.astro';
+import Results from './proposal/results.astro';
 
 interface TableProps {
   headers: string[];
@@ -22,7 +23,7 @@ interface TableProps {
           <Status status={row.status}/>
           <StartEndTime time={row.votingStart}/>
           <StartEndTime time={row.votingEnd}/>
-          <td><a href={row.resultsLink}>Results</a></td>
+          <Results status={row.status} id={row.key} />
         </tr>
       ))}
     </tbody>
