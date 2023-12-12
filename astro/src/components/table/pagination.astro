@@ -1,0 +1,43 @@
+---
+import { buttonVariants } from '../ts/buttonVariants.ts';
+import { cn } from '../../../common/utils';
+import * as Icon from '@astropub/icons';
+
+---
+<div className="flex items-center justify-between px-2 flex-row">
+    <div className="flex-1 text-sm text-muted-foreground">
+        Page x of x
+    </div>
+    <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-2">
+            <button class={cn(
+                buttonVariants({variant: 'outline',}),
+                'hidden h-8 w-8 p-0 lg:flex'
+                )}>
+                <span class="sr-only">Go to first page</span>
+                <Icon.DoubleArrowLeft class="h-4 w-4" />
+            </button> 
+            <button class={cn(
+                buttonVariants({variant: 'outline',}),
+                'h-8 w-8 p-0 lg:flex'
+                )}>
+                <span class="sr-only">Go to first page</span>
+                <Icon.ChevronLeft class="h-4 w-4" />
+            </button> 
+            <button class={cn(
+                buttonVariants({variant: 'outline',}),
+                'h-8 w-8 p-0 lg:flex'
+                )}>
+                <span class="sr-only">Go to first page</span>
+                <Icon.ChevronRight class="h-4 w-4" />
+            </button> 
+            <button class={cn(
+                buttonVariants({variant: 'outline',}),
+                'hidden h-8 w-8 p-0 lg:flex'
+                )}>
+                <span class="sr-only">Go to first page</span>
+                <Icon.DoubleArrowRight class="h-4 w-4" />
+            </button> 
+        </div>
+    </div>
+</div>

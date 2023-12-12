@@ -6,27 +6,27 @@ import Key from './proposal/key.astro';
 import Status from './proposal/status.astro';
 import StartEndTime from './proposal/start-end-time.astro';
 import Results from './proposal/results.astro';
+import Pagination from './pagination.astro';
 
-interface TableProps {
-  headers: string[];
-  rows: { key: string; category: string; title: string; status: string; votingStart: string; votingEnd: string; resultsLink: string }[];
-}
 ---
-<div class="rounded-md border w-full overflow-auto">
-  <table class="w-full caption-bottom text-sm">
-    <TableHeader />
-    <tbody class="[&_tr:last-child]:border-0">
-      {rows.map((row) => (
-        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-          <Key key={row.key}/>
-          <Title title={row.title} category={row.category}/>
-          <Status status={row.status}/>
-          <StartEndTime time={row.votingStart}/>
-          <StartEndTime time={row.votingEnd}/>
-          <Results status={row.status} id={row.key} />
-        </tr>
-      ))}
-    </tbody>
-  </table>
+<div class="space-y-4">
+  <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
+    <table class="w-full caption-bottom text-sm">
+      <TableHeader />
+      <tbody class="[&_tr:last-child]:border-0">
+        {rows.map((row) => (
+          <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+            <Key key={row.key}/>
+            <Title title={row.title} category={row.category}/>
+            <Status status={row.status}/>
+            <StartEndTime time={row.votingStart}/>
+            <StartEndTime time={row.votingEnd}/>
+            <Results status={row.status} id={row.key} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <Pagination />
 </div>
 
