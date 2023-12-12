@@ -1,6 +1,6 @@
 
 
-export const headers = ["Key", "Title", "Status", "Voting Start", "Voting End", "Results"];
+export const headers = ["Key", "Title", "Status", "Voting Start", "Voting End", ""];
 
 
 export const rows = [
