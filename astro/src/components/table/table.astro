@@ -1,5 +1,5 @@
 ---
-import {rows} from '../../../common/fakedata'
+import { rows } from '../../../common/fakedata'
 import TableHeader from './header.astro'
 import Title from './proposal/title.astro';
 import Key from './proposal/key.astro';
@@ -8,10 +8,14 @@ import StartEndTime from './proposal/start-end-time.astro';
 import Results from './proposal/results.astro';
 import Pagination from './pagination.astro';
 
+import { atom } from 'nanostores';
+export const numPages = atom(Math.ceil(14/10));
+export const currentPage = atom(1);
+const numRows: number = rows.length;
 ---
 <div class="space-y-4">
   <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
-    <table class="w-full caption-bottom text-sm">
+    <table class="w-full caption-bottom text-sm" id="data-table">
       <TableHeader />
       <tbody class="[&_tr:last-child]:border-0">
         {rows.map((row) => (
@@ -27,6 +31,35 @@ import Pagination from './pagination.astro';
       </tbody>
     </table>
   </div>
-  <Pagination />
+  <Pagination numRows={numRows}/>
 </div>
 
+<script>
+  import {currentPage} from './table.astro';
+  console.log("HI")
+  const updateDisplayedRows = (currentPage?: number) => {
+  // Default to page 1 if currentPage is undefined
+  const effectivePage = currentPage ?? 1;
+  const itemsPerPage = 10;
+  const start = (effectivePage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+
+  const allRows : NodeListOf<HTMLTableCellElement> = document.querySelectorAll('#data-table tr');
+  
+  allRows.forEach((row, index) => {
+      if (index >= start && index < end) {
+          row.style.display = ''; // Show row
+      } else {
+          row.style.display = 'none'; // Hide row
+      }
+    });
+  };
+
+  // Update table rows initially
+  updateDisplayedRows(1);
+
+  // Make the function accessible to the pagination script
+  window.updateTableContent = () => {
+    updateDisplayedRows(currentPage.value);
+  }
+</script>

@@ -1,43 +1,106 @@
 ---
-import { buttonVariants } from '../ts/buttonVariants.ts';
+import { buttonVariants } from '../ts/buttonVariants';
 import { cn } from '../../../common/utils';
 import * as Icon from '@astropub/icons';
 
+import {numPages} from './table.astro';
+
+const { numRows } = Astro.props as { numRows: number };
+const itemsPerPage: Number = 10;
+const disabled: Boolean = numPages.value === 1 ? true : false;
+let pageNumber: Number = 1;
 ---
-<div className="flex items-center justify-between px-2 flex-row">
-    <div className="flex-1 text-sm text-muted-foreground">
-        Page x of x
+<div class="flex items-center justify-between px-2 flex-row">
+    <div id="page-indicator" class="flex-1 text-sm text-muted-foreground">
+        Page {pageNumber} of {numPages.value}
     </div>
-    <div className="flex items-center space-x-6">
-        <div className="flex items-center space-x-2">
-            <button class={cn(
+    <div class="flex items-center space-x-6">
+        <div class="flex items-center space-x-2">
+            <button 
+                id="first-page"
+                class={cn(
                 buttonVariants({variant: 'outline',}),
-                'hidden h-8 w-8 p-0 lg:flex'
-                )}>
+                'h-8 w-8 p-0 hidden lg:flex')}
+                disabled={disabled}
+            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.DoubleArrowLeft class="h-4 w-4" />
             </button> 
-            <button class={cn(
+            <button 
+                id="prev-page"
+                class={cn(
                 buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 lg:flex'
-                )}>
+                'h-8 w-8 p-0 lg:flex')}
+                disabled={disabled}
+            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.ChevronLeft class="h-4 w-4" />
             </button> 
-            <button class={cn(
+            <button 
+                id="next-page"
+                class={cn(
                 buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 lg:flex'
-                )}>
+                'h-8 w-8 p-0 lg:flex')}
+                disabled={disabled}
+            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.ChevronRight class="h-4 w-4" />
             </button> 
-            <button class={cn(
+            <button 
+                id="last-page"
+                class={cn(
                 buttonVariants({variant: 'outline',}),
-                'hidden h-8 w-8 p-0 lg:flex'
-                )}>
+                'h-8 w-8 p-0 hidden lg:flex')}
+                disabled={disabled}
+            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.DoubleArrowRight class="h-4 w-4" />
             </button> 
         </div>
     </div>
 </div>
+
+<script>
+    import { numPages, currentPage } from "./table.astro";    
+    // const numPages = parseInt(document.getElementById('page-indicator')!.dataset.numPages!);
+
+    const updatePageIndicator = () => {
+        document.getElementById('page-indicator')!.textContent = `Page ${currentPage} of ${numPages.value}`;
+    };
+
+    const updateTableContent = () => {
+        
+    };
+
+    document.getElementById('first-page')!.addEventListener('click', () => {
+        currentPage.set(1);
+        // updatePageIndicator();
+        // updateTableContent();
+    });
+
+    document.getElementById('prev-page')!.addEventListener('click', () => {
+        if (!currentPage || !currentPage.value) throw new Error('currentPage is undefined');
+        if (currentPage.value > 1) {
+            currentPage.set(currentPage.value - 1);
+            // updatePageIndicator();
+            // updateTableContent();
+        }
+    });
+
+    document.getElementById('next-page')!.addEventListener('click', () => {
+        if (!numPages || !numPages.value) throw new Error('numPages is undefined');
+        if (!currentPage || !currentPage.value) throw new Error('currentPage is undefined');
+        if (currentPage.value < numPages.value) {
+            currentPage.set(currentPage.value + 1);
+            // updatePageIndicator();
+            // updateTableContent();
+        }
+    });
+
+    document.getElementById('last-page')!.addEventListener('click', () => {
+        if (!numPages || !numPages.value) throw new Error('numPages is undefined');
+        currentPage.set(numPages.value);
+        // updatePageIndicator();
+        // updateTableContent();
+    });
+</script>
