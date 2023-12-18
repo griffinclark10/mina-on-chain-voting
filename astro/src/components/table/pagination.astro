@@ -3,16 +3,16 @@ import { buttonVariants } from '../ts/buttonVariants';
 import { cn } from '../../../common/utils';
 import * as Icon from '@astropub/icons';
 
-import {numPages} from './table.astro';
+import {numPages, currentPage} from './table.astro';
 
-const { numRows } = Astro.props as { numRows: number };
-const itemsPerPage: Number = 10;
 const disabled: Boolean = numPages.value === 1 ? true : false;
-let pageNumber: Number = 1;
+function goToPage(pageNumber: number) {
+  currentPage.set(pageNumber);
+}
 ---
 <div class="flex items-center justify-between px-2 flex-row">
     <div id="page-indicator" class="flex-1 text-sm text-muted-foreground">
-        Page {pageNumber} of {numPages.value}
+        Page {currentPage.value} of {numPages.value}
     </div>
     <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-2">
@@ -60,47 +60,40 @@ let pageNumber: Number = 1;
     </div>
 </div>
 
-<script>
-    import { numPages, currentPage } from "./table.astro";    
-    // const numPages = parseInt(document.getElementById('page-indicator')!.dataset.numPages!);
-
-    const updatePageIndicator = () => {
-        document.getElementById('page-indicator')!.textContent = `Page ${currentPage} of ${numPages.value}`;
-    };
-
-    const updateTableContent = () => {
-        
-    };
-
-    document.getElementById('first-page')!.addEventListener('click', () => {
-        currentPage.set(1);
-        // updatePageIndicator();
-        // updateTableContent();
+<!-- <script type="module">
+    import { currentPage, numPages } from './table.astro';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      
+  
+      const updatePageIndicator = () => {
+          document.getElementById('page-indicator').textContent = `Page ${currentPage.value} of ${numPages.value}`;
+      };
+  
+      // Event listeners
+      document.getElementById('first-page').addEventListener('click', () => {
+          currentPage.set(1);
+          updatePageIndicator();
+      });
+  
+      document.getElementById('prev-page').addEventListener('click', () => {
+          if (currentPage.value > 1) {
+              currentPage.set(currentPage.value - 1);
+              updatePageIndicator();
+          }
+      });
+  
+      document.getElementById('next-page').addEventListener('click', () => {
+          if (currentPage.value < numPages.value) {
+              currentPage.set(currentPage.value + 1);
+              updatePageIndicator();
+          }
+      });
+  
+      document.getElementById('last-page').addEventListener('click', () => {
+          currentPage.set(numPages.value);
+          updatePageIndicator();
+      });
     });
-
-    document.getElementById('prev-page')!.addEventListener('click', () => {
-        if (!currentPage || !currentPage.value) throw new Error('currentPage is undefined');
-        if (currentPage.value > 1) {
-            currentPage.set(currentPage.value - 1);
-            // updatePageIndicator();
-            // updateTableContent();
-        }
-    });
-
-    document.getElementById('next-page')!.addEventListener('click', () => {
-        if (!numPages || !numPages.value) throw new Error('numPages is undefined');
-        if (!currentPage || !currentPage.value) throw new Error('currentPage is undefined');
-        if (currentPage.value < numPages.value) {
-            currentPage.set(currentPage.value + 1);
-            // updatePageIndicator();
-            // updateTableContent();
-        }
-    });
-
-    document.getElementById('last-page')!.addEventListener('click', () => {
-        if (!numPages || !numPages.value) throw new Error('numPages is undefined');
-        currentPage.set(numPages.value);
-        // updatePageIndicator();
-        // updateTableContent();
-    });
-</script>
+  </script> -->
+  
