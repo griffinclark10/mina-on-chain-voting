@@ -3,12 +3,10 @@ import { buttonVariants } from '../ts/buttonVariants';
 import { cn } from '../../../common/utils';
 import * as Icon from '@astropub/icons';
 
-import {numPages, currentPage} from './table.astro';
+import { currentPage, numPages } from '../ts/pagination';
 
 const disabled: Boolean = numPages.value === 1 ? true : false;
-function goToPage(pageNumber: number) {
-  currentPage.set(pageNumber);
-}
+
 ---
 <div class="flex items-center justify-between px-2 flex-row">
     <div id="page-indicator" class="flex-1 text-sm text-muted-foreground">
@@ -22,7 +20,7 @@ function goToPage(pageNumber: number) {
                 buttonVariants({variant: 'outline',}),
                 'h-8 w-8 p-0 hidden lg:flex')}
                 disabled={disabled}
-            >
+=            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.DoubleArrowLeft class="h-4 w-4" />
             </button> 
@@ -60,40 +58,27 @@ function goToPage(pageNumber: number) {
     </div>
 </div>
 
-<!-- <script type="module">
-    import { currentPage, numPages } from './table.astro';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      
-  
-      const updatePageIndicator = () => {
-          document.getElementById('page-indicator').textContent = `Page ${currentPage.value} of ${numPages.value}`;
-      };
-  
-      // Event listeners
-      document.getElementById('first-page').addEventListener('click', () => {
-          currentPage.set(1);
-          updatePageIndicator();
-      });
-  
-      document.getElementById('prev-page').addEventListener('click', () => {
-          if (currentPage.value > 1) {
-              currentPage.set(currentPage.value - 1);
-              updatePageIndicator();
-          }
-      });
-  
-      document.getElementById('next-page').addEventListener('click', () => {
-          if (currentPage.value < numPages.value) {
-              currentPage.set(currentPage.value + 1);
-              updatePageIndicator();
-          }
-      });
-  
-      document.getElementById('last-page').addEventListener('click', () => {
-          currentPage.set(numPages.value);
-          updatePageIndicator();
-      });
-    });
-  </script> -->
-  
+<script type="module" define:vars={{currentPage, numPages}}>
+
+    function goToPage(pageNumber) {
+        try {
+            console.log("goToPage initially called");
+            if (pageNumber < 1 || pageNumber > numPages.value) {
+                return;
+            }
+            // alert("goToPage correctly called: " + pageNumber);
+            currentPage.set(pageNumber);
+        } catch (error) {
+            alert("Error setting currentPage: " + error + "!!!");
+        }
+    }
+
+    const updatePageIndicator = () => {
+        document.getElementById('page-indicator').textContent = `Page ${$currentPage.value} of ${$numPages.value}`;
+    };
+
+    document.getElementById('first-page').addEventListener('click', () => {goToPage(1)});
+    document.getElementById('prev-page').addEventListener('click', () => goToPage(currentPage.value - 1));
+    document.getElementById('next-page').addEventListener('click', () => goToPage(currentPage.value + 1));
+    document.getElementById('last-page').addEventListener('click', () => goToPage(numPages.value));
+</script>

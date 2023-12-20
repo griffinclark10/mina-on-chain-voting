@@ -1,24 +1,43 @@
 ---
-import { rows } from '../../../common/fakedata'
 import TableHeader from './header.astro'
 import Title from './proposal/title.astro';
 import Key from './proposal/key.astro';
 import Status from './proposal/status.astro';
 import StartEndTime from './proposal/start-end-time.astro';
 import Results from './proposal/results.astro';
-import Pagination from './pagination.astro';
 
-import { atom } from 'nanostores';
-export const numPages = atom(Math.ceil(14/10));
-export const currentPage = atom(1);
-const numRows: number = rows.length;
+import { rows } from '../../../common/fakedata'
+import  Pagination from './pagination.astro';
+import {currentPage, numPages, visibleRows} from '../ts/pagination';
+
+const updateDisplayedRows = (currentPage?: number) => {
+  // Default to page 1 if currentPage is undefined
+  const effectivePage = currentPage ?? 1;
+  const itemsPerPage = 10;
+  const start = (effectivePage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  console.log("Start, end: ", start, end)
+  visibleRows.set(rows.slice(start, end))
+};
+
+const handlePageChange = (pageNumber: number) => {
+        alert(`Page changed to ${pageNumber}`)
+        currentPage.set(pageNumber);
+        console.log(`Current page is now ${currentPage.value}`)
+    };
+// const rowValue: number = currentPage.value ? currentPage.value : 1;
+currentPage.subscribe((value) => {
+  console.log(value)
+  updateDisplayedRows(value)
+})
+
 ---
 <div class="space-y-4">
   <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
-    <table class="w-full caption-bottom text-sm" id="data-table">
+    <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
       <TableHeader />
       <tbody class="[&_tr:last-child]:border-0">
-        {rows.map((row) => (
+        {visibleRows.value.map((row) => (
           <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
@@ -31,35 +50,19 @@ const numRows: number = rows.length;
       </tbody>
     </table>
   </div>
-  <Pagination numRows={numRows}/>
+  <Pagination/>
 </div>
 
-<script>
-  import {currentPage} from './table.astro';
-  console.log("HI")
-  const updateDisplayedRows = (currentPage?: number) => {
-  // Default to page 1 if currentPage is undefined
-  const effectivePage = currentPage ?? 1;
-  const itemsPerPage = 10;
-  const start = (effectivePage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-
-  const allRows : NodeListOf<HTMLTableCellElement> = document.querySelectorAll('#data-table tr');
+<script define:vars={{currentPage}}>
   
-  allRows.forEach((row, index) => {
-      if (index >= start && index < end) {
-          row.style.display = ''; // Show row
-      } else {
-          row.style.display = 'none'; // Hide row
-      }
-    });
-  };
+  document.getElementById('btn1').addEventListener('click', () => testFunction());
 
-  // Update table rows initially
-  updateDisplayedRows(1);
-
-  // Make the function accessible to the pagination script
-  window.updateTableContent = () => {
-    updateDisplayedRows(currentPage.value);
+  const testFunction = () => {
+    try {
+      currentPage.set(1);
+      alert("Current page is now 1")
+    } catch (e) {
+      alert("Error: " + e);
+    }
   }
 </script>

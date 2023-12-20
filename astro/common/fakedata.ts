@@ -2,10 +2,9 @@
 
 export const headers = ["Key", "Title", "Status", "Voting Start", "Voting End", ""];
 
-
 export const rows = [
   {
-    "key": "MIP4",
+    "key": "MIP1",
     "category": "Best Picture",
     "title": "Nomadland",
     "status": "Completed",
@@ -15,13 +14,114 @@ export const rows = [
 
   },
   {
-    "key": "MIP1",
+    "key": "MIP2",
     "category": "Best Actor",
     "title": "Anthony Hopkins",
     "status": "In Progress",
     "votingStart": 1656927000000,
     "votingEnd": 1703529900000,
     "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP3",
+    "category": "Best Actress",
+    "title": "Frances McDormand",
+    "status": "Completed",
+    "votingStart": 1678881600000,
+    "votingEnd": 1704067200000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP4",
+    "category": "Best Director",
+    "title": "Chloé Zhao",
+    "status": "In Review",
+    "votingStart": 1656927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP5",
+    "category": "Best Original Screenplay",
+    "title": "Promising Young Woman",
+    "status": "Pending",
+    "votingStart": 1688889600000,
+    "votingEnd": 1714075200000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP6",
+    "category": "Best Adapted Screenplay",
+    "title": "The Father",
+    "status": "In Progress",
+    "votingStart": 1666927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP7",
+    "category": "Best Cinematography",
+    "title": "Mank",
+    "status": "In Review",
+    "votingStart": 1656927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP8",
+    "category": "Best Editing",
+    "title": "Sound of Metal",
+    "status": "Completed",
+    "votingStart": 1678881600000,
+    "votingEnd": 1704067200000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP9",
+    "category": "Best Visual Effects",
+    "title": "Tenet",
+    "status": "Pending",
+    "votingStart": 1688889600000,
+    "votingEnd": 1714075200000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP10",
+    "category": "Best Production Design",
+    "title": "The Father",
+    "status": "In Progress",
+    "votingStart": 1666927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP11",
+    "category": "Best Costume Design",
+    "title": "Ma Rainey's Black Bottom",
+    "status": "In Review",
+    "votingStart": 1656927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP12",
+    "category": "Best Production Design",
+    "title": "The Father",
+    "status": "In Progress",
+    "votingStart": 1666927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
+  },
+  {
+    "key": "MIP13",
+    "category": "Best Picture",
+    "title": "No Country For Old Men",
+    "status": "Completed",
+    "votingStart": 1656927000000,
+    "votingEnd": 1703529900000,
+    "resultsLink": "https://www.oscars.org/oscars/ceremonies/2021"
   }
 ]
 
+// export a type of type row 
+export type FakeDataRow = typeof rows[0];
