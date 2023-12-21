@@ -1,0 +1,51 @@
+---
+import Button from '../../core/button.astro'
+import Seperator from '../../core/seperator.astro'
+
+import {cn} from '../../../../common/utils'
+import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
+
+import * as Icon from '@astropub/icons';
+
+const {table, className, sideOffset} = Astro.props as {
+    table: string,
+    className: string,
+    sideOffset: string
+}
+
+const formatVariants = [
+  {
+    name: 'CSV',
+    format: 'csv',
+  },
+  {
+    name: 'XLSX',
+    format: 'xlsx',
+  },
+] as const;
+---
+<Astronav closeOnClick>
+    <Dropdown class="relative">
+        <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
+            <Icon.Download class="w-4 h-4 mr-2" />
+            <span class="mt-0.5">Download</span>
+        </Button>
+        <DropdownItems data-state="open" class={cn(
+        'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md right-0 top-10',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        "w-[150px]"
+      )}>
+            <span class="px-2 py-1.5 text-sm font-semibold">What Format?</span>
+            <Seperator className="my-2"/>
+            {formatVariants.map((variant) => (
+                <button key={variant.format} class="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                  {variant.name}
+                </button>
+            ))}
+        </DropdownItems>
+    </Dropdown>
+</Astronav>
+
+
+
+
