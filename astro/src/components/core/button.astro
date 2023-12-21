@@ -3,7 +3,7 @@ import { cn } from '../../../common/utils';
 import { buttonVariants, ButtonProps } from '../ts/buttonVariants';
 
 const { variant = 'default', size = 'default', className = ''} = Astro.props as ButtonProps;
-export const buttonClass = cn(buttonVariants({ variant, size }), className);
+const buttonClass = cn(buttonVariants({ variant, size }), className);
 ---
 <button class={buttonClass}>
     <slot />
