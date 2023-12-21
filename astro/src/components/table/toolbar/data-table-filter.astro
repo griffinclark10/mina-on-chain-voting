@@ -1,0 +1,63 @@
+---
+import Seperator from '../../core/seperator.astro';
+import Badge from '../../core/badge.astro';
+import PopoverContent from '../../core/popover-content.astro';
+
+import { cn } from '../../../../common/utils';
+import { buttonVariants } from '../../ts/buttonVariants';
+
+import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
+import * as Icon from '@astropub/icons';
+
+type IconType = typeof Icon;
+
+export interface Options {
+  value: string;
+  icon?: IconType;
+}
+
+interface Props {
+  column?: string;
+  title?: string;
+  options: Options[];
+}
+
+const { column, title, options } = Astro.props as Props;
+// hard coding selected values, will need to make this an atom?
+const selectedValues = new Set(['1', '2']);
+
+---
+<Astronav>
+    <Dropdown class="relative">
+        <!-- <div class="relative"> -->
+            <button id=`toggle-popover-${column}` data-popover-target="popover-default" class={cn(buttonVariants({variant: 'outline', size: "sm"}),'h-8 border-dashed')}>
+                <Icon.PlusCircled class="mr-2 h-4 w-4" />
+                {title}
+                {selectedValues.size > 0 && (
+                    <>
+                        <Seperator orientation="vertical" className="mx-2 h-4" />
+                        <Badge variant="secondary" size="sm" className="rounded-sm px-1 font-normal lg:hidden">
+                            {selectedValues.size}
+                        </Badge>
+                        <div className="hidden space-x-1 lg:flex">
+                            {selectedValues.size > 2 ? (
+                                <Badge variant="secondary" className="rounded-sm px-1 font-normal">
+                                    {selectedValues.size} selected
+                                </Badge>
+                            ) : (
+                                options.filter((option) => selectedValues.has(option.value))
+                                .map((option) => (
+                                    <Badge variant="secondary" className="rounded-sm px-1 font-normal">
+                                        {option.value}
+                                    </Badge>
+                                ))
+                            )}
+                        </div>
+                    </>
+                )}
+            </button>
+            <DropdownItems>
+                <PopoverContent title={title} options={options} className="w-[200px] p-0" align="start" />
+            </DropdownItems>
+    </Dropdown>
+</Astronav>
