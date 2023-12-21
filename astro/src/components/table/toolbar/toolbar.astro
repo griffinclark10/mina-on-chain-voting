@@ -1,0 +1,15 @@
+---
+import Input from "./input.astro"
+import DataTableFilter from "./data-table-filter.astro";
+import Download from "./download.astro";
+
+import { proposalTableStatuses } from '../proposal/status.astro'
+---
+<div class="flex items-center justify-between">
+    <div class="flex flex-1 items-center space-x-2">
+        <Input className="h-8 w-[150px] lg:w-[250px]" placeholder="Find proposal..." />
+        <DataTableFilter column="Status" title="Status" options={proposalTableStatuses}/>
+        <DataTableFilter column="Category" title="Category" options={proposalTableStatuses}/>
+    </div>
+    <Download />
+</div>

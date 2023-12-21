@@ -5,6 +5,7 @@ import Key from './proposal/key.astro';
 import Status from './proposal/status.astro';
 import StartEndTime from './proposal/start-end-time.astro';
 import Results from './proposal/results.astro';
+import Toolbar from './toolbar/toolbar.astro';
 
 import { rows } from '../../../common/fakedata'
 import  Pagination from './pagination.astro';
@@ -33,6 +34,7 @@ currentPage.subscribe((value) => {
 
 ---
 <div class="space-y-4">
+  <Toolbar />
   <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
     <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
       <TableHeader />
