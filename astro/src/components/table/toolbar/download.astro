@@ -38,9 +38,9 @@ const formatVariants = [
             <span class="px-2 py-1.5 text-sm font-semibold">What Format?</span>
             <Seperator className="my-2"/>
             {formatVariants.map((variant) => (
-                <button key={variant.format} class="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                <Button key={variant.format} className="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" variant="ghost">
                   {variant.name}
-                </button>
+                </Button>
             ))}
         </DropdownItems>
     </Dropdown>

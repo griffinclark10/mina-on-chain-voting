@@ -1,6 +1,5 @@
 ---
-import { cn } from '../../../../common/utils';
-import { buttonVariants } from '../../ts/buttonVariants';
+import Button from '../../core/button.astro';
 import * as Icon from '@astropub/icons';
 
 const { status, id } = Astro.props as { status: String, id: number };
@@ -12,12 +11,12 @@ const buttonText = status === 'Completed' ? 'Results' : 'Go Vote';
           ? `/proposal/${id}/results`
           : `/proposal/${id}`
       }>
-        <button class={cn(buttonVariants({variant: 'ghost',}),'px-0')}>
+        <Button className="px-0" variant="ghost">
           <div class="flex items-center">
               <span class="ml-1 whitespace-nowrap">{buttonText}</span> 
               <Icon.ExternalLink className=" w-4 h-4" />
           </div>
           <span class="sr-only">Open menu</span>
-        </button>
+        </Button>
     </a>
 </td>

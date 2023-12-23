@@ -1,9 +1,8 @@
 ---
-import { buttonVariants } from '../ts/buttonVariants';
-import { cn } from '../../../common/utils';
 import * as Icon from '@astropub/icons';
 
 import { currentPage, numPages } from '../ts/pagination';
+import Button from '../core/button.astro';
 
 const disabled: Boolean = numPages.value === 1 ? true : false;
 
@@ -14,43 +13,39 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
     </div>
     <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-2">
-            <button 
+            <Button 
                 id="first-page"
-                class={cn(
-                buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 hidden lg:flex')}
+                className="h-8 w-8 p-0 hidden lg:flex"
+                variant="outline"
                 disabled={disabled}
 =            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.DoubleArrowLeft class="h-4 w-4" />
-            </button> 
-            <button 
+            </Button> 
+            <Button 
                 id="prev-page"
-                class={cn(
-                buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 lg:flex')}
+                className="h-8 w-8 p-0 lg:flex"
+                variant="outline"
                 disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
                 <Icon.ChevronLeft class="h-4 w-4" />
-            </button> 
-            <button 
-                id="next-page"
-                class={cn(
-                buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 lg:flex')}
+            </Button> 
+            <Button 
+                id="prev-page"
+                className="h-8 w-8 p-0 lg:flex"
+                variant="outline"
                 disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
                 <Icon.ChevronRight class="h-4 w-4" />
-            </button> 
-            <button 
-                id="last-page"
-                class={cn(
-                buttonVariants({variant: 'outline',}),
-                'h-8 w-8 p-0 hidden lg:flex')}
+            </Button> 
+            <Button 
+                id="first-page"
+                className="h-8 w-8 p-0 hidden lg:flex"
+                variant="outline"
                 disabled={disabled}
-            >
+=            >
                 <span class="sr-only">Go to first page</span>
                 <Icon.DoubleArrowRight class="h-4 w-4" />
             </button> 

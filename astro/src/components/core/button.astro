@@ -2,9 +2,9 @@
 import { cn } from '../../../common/utils';
 import { buttonVariants, ButtonProps } from '../ts/buttonVariants';
 
-const { variant = 'default', size = 'default', className = ''} = Astro.props as ButtonProps;
+const { variant = 'default', size = 'default', className = '', ...otherProps} = Astro.props as ButtonProps;
 const buttonClass = cn(buttonVariants({ variant, size }), className);
 ---
-<button class={buttonClass}>
+<button class={buttonClass} {...otherProps}>
     <slot />
 </button>
