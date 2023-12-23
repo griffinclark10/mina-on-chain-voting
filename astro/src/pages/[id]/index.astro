@@ -1,0 +1,11 @@
+---
+export async function getStaticPaths() {
+    const ids = ['1', '2', '3', '4']; 
+    return ids.map(id => {
+        return { params: { id } };
+    });
+}
+
+const id = Astro.params.id;
+---
+<h1>Path: {id}</h1>
