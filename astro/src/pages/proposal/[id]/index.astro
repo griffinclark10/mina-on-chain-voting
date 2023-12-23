@@ -1,0 +1,36 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/page-header/page-header.astro';
+import PageHeaderHeading from '../../../components/page-header/heading.astro';
+import PageHeaderDescription from '../../../components/page-header/description.astro';
+
+export async function getStaticPaths() {
+    const ids = ['1', '2', '3', '4']; 
+    return ids.map(id => {
+        return { params: { id } };
+    });
+}
+
+const id = Astro.params.id;
+
+//const proposal = await getProposal(id);
+---
+<Layout>
+    <div className="container relative">
+        <PageHeader className="hidden md:block pb-6">
+            <PageHeaderHeading>Easier zkApp programmability on mainnet</PageHeaderHeading>
+            <PageHeaderDescription>Adding programmable smart contracts (zkApps) to the Mina protocol.
+            </PageHeaderDescription>
+        </PageHeader>
+    
+        <PageHeader className="block md:hidden pb-6 text-center">
+            <PageHeaderHeading className="text-2xl">Easier zkApp programmability on mainnet</PageHeaderHeading>
+            <PageHeaderDescription className="text-base">Adding programmable smart contracts (zkApps) to the Mina protocol.</PageHeaderDescription>
+        </PageHeader>
+
+        <div className="flex flex-col gap-2">
+            
+        </div>
+    </div>
+</Layout>
+

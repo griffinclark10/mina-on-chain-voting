@@ -1,0 +1,10 @@
+---
+import { cn } from '../../../common/utils';
+import { Props } from './card.astro';
+
+const { className, ref, ...props} = Astro.props as Props;
+
+---
+<div ref={ref} class={cn('flex flex-col space-y-1.5 p-6', className)} {...props}>
+    <slot />
+</div>

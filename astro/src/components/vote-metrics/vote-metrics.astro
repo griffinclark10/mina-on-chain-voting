@@ -1,0 +1,20 @@
+---
+import { GetProposalResult, GetProposalResultsResult } from '../../../common/store';
+
+type Variants =
+  | {
+      variant: 'default';
+      proposal: GetProposalResult;
+    }
+  | {
+      variant: 'results';
+      proposal: GetProposalResultsResult;
+    };
+
+type Props = Variants;
+
+const { variant, proposal } = Astro.props as Props;
+---
+<div className="grid gap-1.5 grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-3 xl:grid-cols-5 xl:grid-rows-2">
+
+</div>

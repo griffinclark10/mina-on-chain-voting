@@ -1,0 +1,10 @@
+---
+import { cn } from '../../../common/utils';
+import { Props } from './card.astro';
+
+const { className, ref, ...props} = Astro.props as Props;
+
+---
+<h3 ref={ref} class={cn('font-semibold leading-none tracking-tight', className)} {...props}>
+    <slot />
+</h3>
