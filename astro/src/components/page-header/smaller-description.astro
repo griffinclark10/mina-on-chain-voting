@@ -1,0 +1,8 @@
+---
+import { cn } from '../../../common/utils';
+
+const { className, ...props } = Astro.props as { className?: string }
+---
+<div class={cn('max-w-[750px] text-base text-muted-foreground sm:text-base', className)} {...props}>
+    <slot />
+</div>
