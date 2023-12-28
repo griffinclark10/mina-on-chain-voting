@@ -3,12 +3,11 @@ import { cn } from '../../../common/utils';
 
 export type Props = {
     className?: string;
-    ref: string;
 }
 
-const { className, ref, ...props} = Astro.props as Props;
+const { className, ...props} = Astro.props as Props;
 
 ---
-<div ref={ref} class={cn('rounded-lg border bg-card text-card-foreground shadow', className)} {...props}>
+<div class={cn('rounded-lg border bg-card text-card-foreground shadow', className)} {...props}>
     <slot />
 </div>
