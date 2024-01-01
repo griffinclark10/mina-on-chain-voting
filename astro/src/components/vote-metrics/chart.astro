@@ -1,0 +1,22 @@
+---
+import Card from "../card/card.astro";
+import CardHeader from "../card/header.astro";
+import CardTitle from "../card/title.astro";
+import CardDescription from "../card/description.astro";
+import CardContent from "../card/content.astro";
+
+const { className } = Astro.props as {className: string};
+---
+<Card className={className}>
+    <CardHeader className="pb-0">
+        <CardTitle>Voting Distribution</CardTitle>
+        <CardDescription>
+            Track the distribution of <span class="inline font-semibold">FOR / AGAINST</span> votes.
+        </CardDescription>
+    </CardHeader>
+    <CardContent className="px-3 md:px-6">
+        <div class="h-40">
+            <!-- implement responsive container -->
+        </div>
+    </CardContent>
+</Card>

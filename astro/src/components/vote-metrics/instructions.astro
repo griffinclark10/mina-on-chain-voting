@@ -1,0 +1,17 @@
+---
+import Card from "../card/card.astro";
+import CardHeader from "../card/header.astro";
+import CardTitle from "../card/title.astro";
+import CardContent from "../card/content.astro";
+import { CardProps } from "../card/card.astro";
+
+interface Props extends CardProps {
+  title: string;
+  content: string;
+}
+
+const { title, content, className, ...props } = Astro.props as Props;
+---
+<Card className={className}>
+    
+</Card>
