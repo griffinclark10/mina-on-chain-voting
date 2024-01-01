@@ -1,11 +1,11 @@
 ---
 import { cn } from '../../../common/utils';
 
-export type Props = {
+export type CardProps = {
     className?: string;
 }
 
-const { className, ...props} = Astro.props as Props;
+const { className, ...props} = Astro.props as CardProps;
 
 ---
 <div class={cn('rounded-lg border bg-card text-card-foreground shadow', className)} {...props}>
