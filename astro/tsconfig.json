@@ -17,8 +17,8 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "common/*": ["./common/*"],
-      "components/*": ["./components/*"],
+      "common/*": ["common/*"],
+      "components/*": ["src/components/*"],
       "models": ["./models"],
       "pages": ["./pages"]
     },
