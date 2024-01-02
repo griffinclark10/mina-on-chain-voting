@@ -1,0 +1,34 @@
+---
+import Dialog from "./dialog.astro";
+import Button from "../core/button.astro";
+
+type ModalButtonProps = {
+  isFor: 'For' | 'Against';
+  className?: string;
+};
+
+const { isFor, className, ...props } = Astro.props as ModalButtonProps;
+const dialogId = isFor;
+---
+
+<Button id={"open-dialog-button-" + isFor} size="sm" className={className} {...props}> 
+  {isFor}
+</Button>
+<Dialog id={dialogId} />
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    function openDialog(dialogId) {
+      const dialog = document.getElementById(dialogId);
+      if (dialog) {
+        dialog.showModal();
+      }
+    }
+
+    const buttonId = "open-dialog-button-" + "${isFor}";
+    const button = document.getElementById(buttonId);
+    if (button) {
+      button.addEventListener('click', () => openDialog(dialogId));
+    }
+  });
+</script>

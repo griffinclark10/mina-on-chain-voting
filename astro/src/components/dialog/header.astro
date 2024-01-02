@@ -1,0 +1,9 @@
+---
+import { cn } from '../../../common/utils';
+import { DialogProps } from './dialog.astro';
+
+const { className, ...props } = Astro.props as DialogProps;
+---
+<div class={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props} >
+    <slot />
+</div>

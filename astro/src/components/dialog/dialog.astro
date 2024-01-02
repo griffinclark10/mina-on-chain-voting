@@ -1,0 +1,23 @@
+---
+import DialogHeader from './header.astro';
+import DialogTitle from './title.astro';
+import DialogContent from './content.astro';
+import DialogDescription from './description.astro';
+import Seperator from '../core/seperator.astro';
+
+export interface DialogProps {
+    className?: string;
+}
+
+const { id } = Astro.props as {id: string};
+---
+<dialog id={id} >
+    <DialogContent>
+        <DialogHeader className="space-y-3.5">
+            <DialogTitle className="text-center">
+                How do I cast my vote?
+            </DialogTitle>
+            <Seperator />
+        </DialogHeader>
+    </DialogContent>
+</dialog>
