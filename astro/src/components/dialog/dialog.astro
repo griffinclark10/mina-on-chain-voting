@@ -11,8 +11,8 @@ export interface DialogProps {
 
 const { id } = Astro.props as {id: string};
 ---
-<dialog id={id} >
-    <DialogContent>
+<dialog id={id} data-dialogId={id}>
+    <DialogContent closeButtonID={id}>
         <DialogHeader className="space-y-3.5">
             <DialogTitle className="text-center">
                 How do I cast my vote?
@@ -21,3 +21,22 @@ const { id } = Astro.props as {id: string};
         </DialogHeader>
     </DialogContent>
 </dialog>
+
+<script>
+    // function closeDialog(dialogId) {
+    //   const dialog = document.getElementById(dialogId);
+    //   if (dialog) {
+    //     dialog.close();
+    //   }
+    // }
+    // const closeButton = document.getElementById('close-dialog');
+    // if (closeButton) {
+    //   closeButton.addEventListener('click', () => {
+    //     const dialogId = closeButton.closest('dialog').id;
+    //     closeDialog(dialogId);
+    //   });
+    // }
+    // else {
+    //   alert('No close button found')
+    // }
+</script>

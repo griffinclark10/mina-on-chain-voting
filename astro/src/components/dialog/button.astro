@@ -10,8 +10,7 @@ type ModalButtonProps = {
 const { isFor, className, ...props } = Astro.props as ModalButtonProps;
 const dialogId = isFor;
 ---
-
-<Button id={"open-dialog-button-" + isFor} size="sm" className={className} {...props}> 
+<Button id={"open-dialog-button-" + isFor} size="sm" className={className} {...props} data-isfor={isFor}> 
   {isFor}
 </Button>
 <Dialog id={dialogId} />
@@ -25,10 +24,41 @@ const dialogId = isFor;
       }
     }
 
-    const buttonId = "open-dialog-button-" + "${isFor}";
-    const button = document.getElementById(buttonId);
-    if (button) {
-      button.addEventListener('click', () => openDialog(dialogId));
+    function closeDialog(dialogId) {
+      const dialog = document.getElementById(dialogId);
+      if (dialog) {
+        dialog.close();
+      }
     }
-  });
+
+    const buttons = document.querySelectorAll('[data-isfor]');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isForValue = button.getAttribute('data-isfor');
+        const dialogId = isForValue;
+        openDialog(dialogId);
+      });
+    });
+
+    const closeButtons = document.querySelectorAll('[data-close]');
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const isForValue = button.getAttribute('data-close');
+          const dialogId = isForValue;
+          closeDialog(dialogId);
+        });
+      });
+    });
+
+    document.addEventListener('click', event => {
+      const openDialogs = document.querySelectorAll('dialog[open]');
+      openDialogs.forEach(dialog => {
+        const dialogContent = dialog.querySelector('.dialog-content');
+
+        if (dialogContent && !dialogContent.contains(event.target)) {
+          const dialogId = dialog.id;
+          closeDialog(dialogId);
+        }
+      });
+    }, true);
 </script>
