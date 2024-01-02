@@ -1,0 +1,47 @@
+---
+import Card, { CardProps } from "../card/card.astro";
+import CardHeader from '../card/header.astro';
+import CardTitle from '../card/title.astro';
+import CardContent from '../card/content.astro';
+import Progress from '../core/progress.astro';
+import { GetProposalResult } from '../../../common/store';
+
+import moment from 'moment';
+
+interface Props extends CardProps {
+  startTime: GetProposalResult['start_time'];
+  endTime: GetProposalResult['end_time'];
+  status: GetProposalResult['status'];
+}
+
+const { startTime, endTime, status, className } = Astro.props as Props;
+const now = moment(new Date()).utc();
+const startDate = moment(new Date(startTime)).utc();
+const endDate = moment(new Date(endTime)).utc();
+const duration = moment.duration(endDate.diff(now));
+const nowInMillis = moment().valueOf();
+const percentage = ((nowInMillis - startTime) / (endTime - startTime)) * 100;
+
+---
+<Card className={className}>
+    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0.5">
+      <CardTitle>Voting Period</CardTitle>
+      <span class="text-xs text-muted-foreground">
+        {status === 'Pending' && 'Voting has not started yet'}
+        {status === 'In Progress' &&
+          `Remaining time: ${duration.days()}D ${duration.hours()}H ${duration.minutes()}m`}
+        {status === 'In Review' && 'Results are being verified'}
+        {status === 'Completed' && 'Voting has ended'}
+      </span>
+    </CardHeader>
+    <CardContent className="flex flex-col gap-1.5 mt-1.5">
+      <Progress
+        className="h-5 rounded-md"
+        value={percentage === -Infinity ? 0 : percentage > 100 ? 100 : percentage}
+      />
+      <div class="flex justify-between items-center">
+        <p class="text-xs text-muted-foreground"> {startDate.format('YYYY-MM-DD | hh:mm A').toString()} UTC</p>
+        <p class="text-xs text-muted-foreground"> {endDate.format('YYYY-MM-DD | hh:mm A').toString()} UTC</p>
+      </div>
+    </CardContent>
+  </Card>

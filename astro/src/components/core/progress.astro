@@ -1,0 +1,13 @@
+---
+import { cn } from '../../../common/utils';
+import { CardProps } from '../card/card.astro';
+
+interface ProgressProps extends CardProps {
+    value: number;
+}
+
+const { value, className, ...props } = Astro.props as ProgressProps;
+---
+<div class={cn("relative h-2 w-full overflow-hidden rounded-full bg-logoOrange/20", className)} {...props}>
+    <div class="h-full w-full flex-1 bg-logoOrange transition-all" style={`width: ${value}%`}></div>
+</div>

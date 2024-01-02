@@ -3,6 +3,9 @@ import { GetProposalResult, GetProposalResultsResult } from '../../../common/sto
 import VoteMetricsChart from './chart.astro';
 import VoteMetricsTotalVotes from './total-votes.astro';
 import VoteMetricsTotalStake from './total-stake.astro';
+import VoteMetricsInstructions from './instructions.astro';
+import VoteMetricsResults from './results.astro'
+import VotesMetricsPeriod from './period.astro'
 
 type Variants =
   | {
@@ -29,4 +32,21 @@ const { variant, proposal } = Astro.props as Props;
   <VoteMetricsTotalStake 
     className='row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5'
     total={3924818923751} />
+
+  <VoteMetricsInstructions className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5" memo=""/>
+
+  <VoteMetricsResults
+          className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
+          total={100}
+          positive={100}
+          negative={0}
+    />
+
+  <VotesMetricsPeriod
+    className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
+    startTime={1698253600000}
+    endTime={1798253600000}
+    status="Pending"
+  />
+
 </div>
