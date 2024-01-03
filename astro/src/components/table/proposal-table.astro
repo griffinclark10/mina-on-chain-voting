@@ -1,10 +1,10 @@
 ---
 import TableHeader from './header.astro'
-import Title from './proposal/title.astro';
-import Key from './proposal/key.astro';
-import Status from './proposal/status.astro';
-import StartEndTime from './proposal/start-end-time.astro';
-import Results from './proposal/results.astro';
+import Title from './cols/proposal/title.astro';
+import Key from './cols/proposal/key.astro';
+import Status from './cols/proposal/status.astro';
+import StartEndTime from './cols/proposal/start-end-time.astro';
+import Results from './cols/proposal/results.astro';
 import Toolbar from './toolbar/toolbar.astro';
 
 import { rows } from '../../../common/fakedata'
@@ -39,7 +39,7 @@ currentPage.subscribe((value) => {
     <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
       <TableHeader />
       <tbody class="[&_tr:last-child]:border-0">
-        {visibleRows.value.map((row) => (
+        {visibleRows.value?.map((row) => (
           <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>

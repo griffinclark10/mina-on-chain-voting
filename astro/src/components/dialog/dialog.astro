@@ -52,7 +52,6 @@ const displayMemo = id === 'For' ? memo : `no ${memo}`;
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     if (copyIcon) copyIcon.classList.add('hidden');
                     if (checkIcon) checkIcon.classList.remove('hidden');
-                    console.log('Text copied to clipboard');
 					setTimeout(() => {
 						if (copyIcon) copyIcon.classList.remove('hidden');
 						if (checkIcon) checkIcon.classList.add('hidden');
