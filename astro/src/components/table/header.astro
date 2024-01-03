@@ -1,8 +1,14 @@
 ---
 import { cn } from '../../../common/utils';
-import {headers} from '../../../common/fakedata';
+import { proposalHeaders, votesHeaders } from '../../../common/fakedata';
 
-const {className} = Astro.props as {className: string};
+interface HeaderProps {
+  proposal: boolean;
+  className?: string;
+}
+
+const { proposal, className } = Astro.props as HeaderProps;
+const headers = proposal ? proposalHeaders : votesHeaders;
 ---
 <thead class="[&_tr]:border-b">
     <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">

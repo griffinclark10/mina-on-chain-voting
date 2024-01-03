@@ -1,6 +1,8 @@
 
 
-export const headers = ["Key", "Title", "Status", "Voting Start", "Voting End", ""];
+export const proposalHeaders = ["Key", "Title", "Status", "Voting Start", "Voting End", ""];
+
+export const votesHeaders = ["Height", "Timestamp", "Account", "Hash", "Vote", "Status"];
 
 export const rows = [
   {
@@ -125,3 +127,71 @@ export const rows = [
 
 // export a type of type row 
 export type FakeDataRow = typeof rows[0];
+
+export const votes = 
+  [
+    {
+      "Height": 255340,
+      "Timestamp": 1685257920000,
+      "Account": "B62qcc3XYlKVKeFYgZEdDBBBdjPLP0euc0UDXt5",
+      "Hash": "1Oey07AJwMRM99WWod7WdpxUPEUiKfo13MbDFhrU",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    },
+    {
+      "Height": 255408,
+      "Timestamp": 1685271960000,
+      "Account": "B62qGQWCCG65DyppcdEeYmdh26oLSAASi7PGzSM",
+      "Hash": "53pdVmvX8ZSBNNj1DlfwWEfHBkBgExvMexLj6VKu",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    },
+    {
+      "Height": 255353,
+      "Timestamp": 1685238480000,
+      "Account": "B62qHKk2fpxKKxn4jlEt61x34XnInz2RSRabt3c",
+      "Hash": "XLptd095V6DQtEhC7yw54ENeV7so8lFAs5p7fFV5",
+      "Vote": "FOR",
+      "Status": "Canonical"
+    },
+    {
+      "Height": 255483,
+      "Timestamp": 1685261700000,
+      "Account": "B62qPBGZ0TDonCEyqZZkkeYf0tdZfjJv2sdF2l2",
+      "Hash": "PhFQRbKEVkhxGoqGfWqqkkXiHVMX6IuEq9URtRyH",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    },
+    {
+      "Height": 255340,
+      "Timestamp": 1685257920000,
+      "Account": "B62qcc3XYlKVKeFYgZEdDBBBdjPLP0euc0UDXt5",
+      "Hash": "1Oey07AJwMRM99WWod7WdpxUPEUiKfo13MbDFhrU",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    },
+    {
+      "Height": 255408,
+      "Timestamp": 1685271960000,
+      "Account": "B62qGQWCCG65DyppcdEeYmdh26oLSAASi7PGzSM",
+      "Hash": "53pdVmvX8ZSBNNj1DlfwWEfHBkBgExvMexLj6VKu",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    },
+    {
+      "Height": 255353,
+      "Timestamp": 1685238480000,
+      "Account": "B62qHKk2fpxKKxn4jlEt61x34XnInz2RSRabt3c",
+      "Hash": "XLptd095V6DQtEhC7yw54ENeV7so8lFAs5p7fFV5",
+      "Vote": "FOR",
+      "Status": "Canonical"
+    },
+    {
+      "Height": 255483,
+      "Timestamp": 1685261700000,
+      "Account": "B62qPBGZ0TDonCEyqZZkkeYf0tdZfjJv2sdF2l2",
+      "Hash": "PhFQRbKEVkhxGoqGfWqqkkXiHVMX6IuEq9URtRyH",
+      "Vote": "AGAINST",
+      "Status": "Non-Canonical"
+    }
+  ]

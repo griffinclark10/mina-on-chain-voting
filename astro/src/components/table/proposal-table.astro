@@ -3,12 +3,12 @@ import TableHeader from './header.astro'
 import Title from './cols/proposal/title.astro';
 import Key from './cols/proposal/key.astro';
 import Status from './cols/proposal/status.astro';
-import StartEndTime from './cols/proposal/start-end-time.astro';
+import Timestamp from './cols/proposal/timestamp.astro';
 import Results from './cols/proposal/results.astro';
 import Toolbar from './toolbar/toolbar.astro';
-
-import { rows } from '../../../common/fakedata'
 import  Pagination from './pagination.astro';
+
+import { rows } from '../../../common/fakedata';
 import {currentPage, numPages, visibleRows} from '../ts/pagination';
 
 const updateDisplayedRows = (currentPage?: number) => {
@@ -37,15 +37,15 @@ currentPage.subscribe((value) => {
   <Toolbar />
   <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
     <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
-      <TableHeader />
+      <TableHeader proposal={true}/>
       <tbody class="[&_tr:last-child]:border-0">
         {visibleRows.value?.map((row) => (
           <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
             <Status status={row.status}/>
-            <StartEndTime time={row.votingStart}/>
-            <StartEndTime time={row.votingEnd}/>
+            <Timestamp time={row.votingStart}/>
+            <Timestamp time={row.votingEnd}/>
             <Results status={row.status} id={row.key} />
           </tr>
         ))}

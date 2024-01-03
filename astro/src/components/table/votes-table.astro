@@ -1,0 +1,29 @@
+---
+import TableHeader from './header.astro'
+import Hash from './cols/votes/hash.astro';
+import Height from './cols/votes/height.astro';
+import Timestamp from './cols/proposal/timestamp.astro';
+import Status from './cols/proposal/status.astro';
+
+import { votes } from '../../../common/fakedata';
+
+---
+<div class="space-y-4">
+    <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
+        <table class="w-full caption-bottom text-sm" id="data-table">
+            <TableHeader proposal={false} />
+            <tbody class="[&_tr:last-child]:border-0">
+                {votes.map((vote) => (
+                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <Height hash={vote.Height} />
+                        <Timestamp timestamp={vote.Timestamp} />
+                        
+                        <Hash hash={vote.Hash} />
+
+                        <Status status={vote.Status} />
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+</div>

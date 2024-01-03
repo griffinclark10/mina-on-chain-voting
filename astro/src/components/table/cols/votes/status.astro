@@ -1,0 +1,19 @@
+---
+import { VoteStatus } from "../../../../../models";
+
+const { status } = Astro.props as { status: VoteStatus };
+
+---
+{status === 'Canonical' ? (
+  <div class="bg-green-600/70 dark:bg-green-500/20 dark:border-green-200/20 border rounded-lg select-none">
+    {status}
+  </div>
+) : status === 'Pending' ? (
+  <div class="bg-yellow-600/70 dark:bg-yellow-400/30 dark:border-yellow-300/40 border rounded-lg select-none">
+    {status}
+  </div>
+) : (
+  <div class="bg-red-600/80 dark:bg-red-500/30 border-red-300/10 border rounded-lg select-none">
+    {status}
+  </div>
+)}
