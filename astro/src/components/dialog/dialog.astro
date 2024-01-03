@@ -4,12 +4,21 @@ import DialogTitle from './title.astro';
 import DialogContent from './content.astro';
 import DialogDescription from './description.astro';
 import Seperator from '../core/seperator.astro';
+import Button from '../core/button.astro';
+
+import * as Icon from '@astropub/icons';
 
 export interface DialogProps {
     className?: string;
 }
 
-const { id } = Astro.props as {id: string};
+interface Props extends DialogProps {
+    id: "For" | "Against";
+    memo: string; //GetProposalResult['key'];
+}
+
+const { id, memo } = Astro.props as Props;
+const displayMemo = id === 'For' ? memo : `no ${memo}`;
 ---
 <dialog id={id} data-dialogId={id}>
     <DialogContent closeButtonID={id}>
@@ -18,25 +27,40 @@ const { id } = Astro.props as {id: string};
                 How do I cast my vote?
             </DialogTitle>
             <Seperator />
+            <DialogDescription className="flex flex-col gap-3">
+                <span class="text-center">
+                    To cast your vote you need to send yourself a transaction with the following keyword(s) in the memo field:
+                </span>
+                <Button variant="outline" size="lg" className="copyButton gap-2" test-id="dialog-copy-button" data-text-to-copy={displayMemo}>
+                    <span class="text-xl text-center font-semibold tracking-tight text-foreground">{displayMemo}</span>
+                    <Icon.Copy class="copy-icon w-4 h-4"/>
+                    <Icon.Check class="check-icon w-5 h-5 hidden"/>
+                </Button>
+            </DialogDescription>
         </DialogHeader>
     </DialogContent>
 </dialog>
 
-<script>
-    // function closeDialog(dialogId) {
-    //   const dialog = document.getElementById(dialogId);
-    //   if (dialog) {
-    //     dialog.close();
-    //   }
-    // }
-    // const closeButton = document.getElementById('close-dialog');
-    // if (closeButton) {
-    //   closeButton.addEventListener('click', () => {
-    //     const dialogId = closeButton.closest('dialog').id;
-    //     closeDialog(dialogId);
-    //   });
-    // }
-    // else {
-    //   alert('No close button found')
-    // }
+<script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+        const copyButtons = document.querySelectorAll('.copyButton');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const copyIcon = button.querySelector('.copy-icon');
+                const checkIcon = button.querySelector('.check-icon');
+                const textToCopy = button.getAttribute('data-text-to-copy');
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    if (copyIcon) copyIcon.classList.add('hidden');
+                    if (checkIcon) checkIcon.classList.remove('hidden');
+                    console.log('Text copied to clipboard');
+					setTimeout(() => {
+						if (copyIcon) copyIcon.classList.remove('hidden');
+						if (checkIcon) checkIcon.classList.add('hidden');
+					}, 2000);
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                });
+            });
+        });
+      });
 </script>
