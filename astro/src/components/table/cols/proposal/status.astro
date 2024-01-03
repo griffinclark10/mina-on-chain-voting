@@ -1,11 +1,11 @@
 ---
-import { ProposalStatus } from '../../../../models/index';
+import { ProposalStatus } from '../../../../../models/index';
 import {CountdownTimer, Stopwatch, QuestionMarkCircled, CheckCircled} from '@astropub/icons';
-import HoverCard from '../../core/hover-card.astro';
+import HoverCard from '../../../core/hover-card.astro';
 
 export interface ProposalTableStatus {
   value: ProposalStatus;
-  icon: any;
+  icon: typeof CountdownTimer;
   description: string;
 };
 
@@ -33,9 +33,18 @@ export const proposalTableStatuses: ProposalTableStatus[] = [
 ];
 
 const {status} = Astro.props as {status: ProposalStatus};
-const {icon, description} = proposalTableStatuses.find(({value}) => value === status) as ProposalTableStatus;
+const statusData = proposalTableStatuses.find(({ value }) => value === status) as ProposalTableStatus;
 ---
+
 <td class="p-2 align-middle">
-    <HoverCard value={status} icon={icon} description={description} />
+  <HoverCard>
+    <div slot="hover-trigger" class="flex w-[100px] items-center gap-1.5">
+      <statusData.icon class="h-4 w-4 text-muted-foreground"/>
+      <span class="select-none">{status}</span>
+    </div>
+    <div slot="hover-content" class="flex absolute top-full left-1/2 transform -translate-x-1/2 transition-opacity delay-500 z-40 w-64 rounded-md border bg-white p-4 text-black shadow-md">
+      <span class="text-xs select-none">{statusData.description}</span>
+    </div>
+  </HoverCard>
 </td>
 
