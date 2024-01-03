@@ -2,10 +2,10 @@
 import { cn } from '../../../common/utils';
 import { badgeVariants, BadgeProps } from '../ts/badgeVariants';
 
-const { variant = 'default', className } = Astro.props as BadgeProps;
+const { variant="default", className='', ...props } = Astro.props as BadgeProps;
 const badgeClass = cn(badgeVariants({ variant }), className);
 ---
-<div className={badgeClass} />
- <slot />
-<div/>
+<div class={badgeClass} {...props} >
+    <slot />
+</div>
 
