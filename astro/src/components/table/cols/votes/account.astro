@@ -1,3 +1,22 @@
 ---
+import HoverCard from "../../../core/hover-card.astro";
+// import Badge from "../../../core/badge.astro";
+import { badgeVariants } from "../../../ts/badgeVariants";
+import { cn } from "../../../../../common/utils";
+import Badge from "../../../core/badge.astro";
+
 const { account } = Astro.props as { account: string };
+
+const prefix = account.slice(0, 4);
+const suffix = account.slice(-4);
 ---
+<td class="p-2 align-middle">
+    <HoverCard>
+        <Badge slot="hover-trigger" variant="outline" className="bg-gray-200/10 dark:bg-gray-500/10">
+            <span class="select-none">{`${prefix}...${suffix}`}</span>
+        </Badge>
+        <div slot="hover-content" class="flex absolute top-full left-1/2 transform -translate-x-1/2 transition-opacity delay-500 z-40 w-fit rounded-md border bg-white p-4 text-black shadow-md">
+            <span class="text-xs font-medium">{account}</span>
+        </div>
+    </HoverCard>
+</td>

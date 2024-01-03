@@ -1,0 +1,28 @@
+---
+import { Check, Cross2 } from '@astropub/icons';
+export interface VotesTableDirection {
+  value: 'FOR' | 'AGAINST';
+  icon: typeof Check;
+}
+
+export const directions: VotesTableDirection[] = [
+  {
+    value: 'FOR',
+    icon: Check,
+  },
+  {
+    value: 'AGAINST',
+    icon: Cross2,
+  },
+];
+
+const { direction } = Astro.props as { direction: VotesTableDirection['value'] };
+const vote = directions.find(({ value }) => value === direction) as VotesTableDirection;
+---
+<td class="p-2 align-middle">
+    <div class="w-20 flex items-center gap-1">
+        <vote.icon class="h-4 w-4 text-muted-foreground"/>
+        <span class="text-xs font-medium">{vote.value}</span>
+      </div>
+</td>
+

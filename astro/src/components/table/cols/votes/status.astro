@@ -1,19 +1,45 @@
 ---
+import Badge from "../../../core/badge.astro";
+
 import { VoteStatus } from "../../../../../models";
+import { CountdownTimer, CrossCircled, CheckCircled } from '@astropub/icons';
 
 const { status } = Astro.props as { status: VoteStatus };
 
+interface VotesTableStatus {
+  value: VoteStatus;
+  icon: typeof CountdownTimer;
+}
+
+export const votesTableStatuses = [
+  {
+    value: 'Pending',
+    icon: CountdownTimer,
+  },
+  {
+    value: 'Orphaned',
+    icon: CrossCircled,
+  },
+  {
+    value: 'Canonical',
+    icon: CheckCircled,
+  },
+];
+// as VotesTableStatus[];
+
 ---
-{status === 'Canonical' ? (
-  <div class="bg-green-600/70 dark:bg-green-500/20 dark:border-green-200/20 border rounded-lg select-none">
-    {status}
-  </div>
-) : status === 'Pending' ? (
-  <div class="bg-yellow-600/70 dark:bg-yellow-400/30 dark:border-yellow-300/40 border rounded-lg select-none">
-    {status}
-  </div>
-) : (
-  <div class="bg-red-600/80 dark:bg-red-500/30 border-red-300/10 border rounded-lg select-none">
-    {status}
-  </div>
-)}
+<td class="p-2 align-middle">
+    {status === 'Canonical' ? (
+        <Badge className="bg-green-600/70 dark:bg-green-500/20 dark:border-green-200/20 border rounded-lg select-none">
+            {status}
+        </Badge>
+    ) : status === 'Pending' ? (
+        <Badge className="bg-yellow-600/70 dark:bg-yellow-400/30 dark:border-yellow-300/40 border rounded-lg select-none">
+            {status}
+        </Badge>
+    ) : (
+        <Badge className="bg-red-600/80 dark:bg-red-500/30 border-red-300/10 border rounded-lg select-none">
+            {status}
+        </Badge>
+    )}
+</td>
