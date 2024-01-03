@@ -1,19 +1,12 @@
 ---
-import {CountdownTimer, Stopwatch, QuestionMarkCircled, CheckCircled} from '@astropub/icons';
-import { ProposalTableStatus } from '../table/proposal/status.astro';
 
-const {value, description} = Astro.props as ProposalTableStatus;
 ---
 <div class="relative">
-    <button class="hover-card-trigger flex w-[100px] items-center gap-1.5"> 
-        {value === "Pending" && <CountdownTimer class="h-4 w-4 text-muted-foreground"/>}
-        {value === "Completed" && <CheckCircled class="h-4 w-4 text-muted-foreground"/>}
-        {value === "In Progress" && <Stopwatch class="h-4 w-4 text-muted-foreground"/>}
-        {value === "In Review" && <QuestionMarkCircled class="h-4 w-4 text-muted-foreground"/>}
-        <span class="select-none">{value}</span>
+    <button class="hover-card-trigger ">
+        <slot name="hover-trigger"/>
     </button>
-    <div class="hover-card-content flex absolute top-full left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity delay-500 z-40 w-64 rounded-md border bg-white p-4 text-black shadow-md">
-        <span class="text-xs select-none">{description}</span>
+    <div class="hover-card-content invisible opacity-0">
+        <slot name="hover-content"/>
     </div>    
 </div>
 
@@ -21,7 +14,6 @@ const {value, description} = Astro.props as ProposalTableStatus;
     document.addEventListener('DOMContentLoaded', function() {
         var hoverCardTriggers = document.querySelectorAll('.hover-card-trigger');
         var hoverCardContents = document.querySelectorAll('.hover-card-content');
-
         hoverCardTriggers.forEach((trigger, index) => {
             trigger.addEventListener('mouseover', function() {
                 hoverCardContents[index]?.classList.remove('invisible', 'opacity-0');
