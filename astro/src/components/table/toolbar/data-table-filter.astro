@@ -7,7 +7,7 @@ import { cn } from '../../../../common/utils';
 import { buttonVariants } from '../../ts/buttonVariants';
 
 import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
-import * as Icon from '@astropub/icons';
+import { PlusCircled } from '@astropub/icons';
 import Button from '../../core/button.astro';
 
 type IconType = typeof Icon;
@@ -32,7 +32,7 @@ const selectedValues = new Set(['1', '2']);
     <Dropdown class="relative">
         <!-- <div class="relative"> -->
             <Button id=`toggle-popover-${column}` data-popover-target="popover-default" variant="outline" size="sm" className="h-8 border-dashed">
-                <Icon.PlusCircled class="mr-2 h-4 w-4" />
+                <PlusCircled class="mr-2 h-4 w-4" />
                 {title}
                 {selectedValues.size > 0 && (
                     <>

@@ -1,5 +1,5 @@
 ---
-import * as Icon from '@astropub/icons';
+import { DoubleArrowLeft, ChevronLeft, ChevronRight, DoubleArrowRight } from '@astropub/icons';
 
 import { currentPage, numPages } from '../ts/pagination';
 import Button from '../core/button.astro';
@@ -20,7 +20,7 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 disabled={disabled}
 =            >
                 <span class="sr-only">Go to first page</span>
-                <Icon.DoubleArrowLeft class="h-4 w-4" />
+                <DoubleArrowLeft class="h-4 w-4" />
             </Button> 
             <Button 
                 id="prev-page"
@@ -29,7 +29,7 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
-                <Icon.ChevronLeft class="h-4 w-4" />
+                <ChevronLeft class="h-4 w-4" />
             </Button> 
             <Button 
                 id="prev-page"
@@ -38,7 +38,7 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
-                <Icon.ChevronRight class="h-4 w-4" />
+                <ChevronRight class="h-4 w-4" />
             </Button> 
             <Button 
                 id="first-page"
@@ -47,7 +47,7 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 disabled={disabled}
 =            >
                 <span class="sr-only">Go to first page</span>
-                <Icon.DoubleArrowRight class="h-4 w-4" />
+                <DoubleArrowRight class="h-4 w-4" />
             </button> 
         </div>
     </div>

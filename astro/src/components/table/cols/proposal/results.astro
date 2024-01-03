@@ -1,6 +1,6 @@
 ---
 import Button from '../../../core/button.astro';
-import * as Icon from '@astropub/icons';
+import { ExternalLink } from '@astropub/icons';
 
 const { status, id } = Astro.props as { status: String, id: number };
 const buttonText = status === 'Completed' ? 'Results' : 'Go Vote';
@@ -14,7 +14,7 @@ const buttonText = status === 'Completed' ? 'Results' : 'Go Vote';
         <Button className="px-0" variant="ghost">
           <div class="flex items-center">
               <span class="ml-1 whitespace-nowrap">{buttonText}</span> 
-              <Icon.ExternalLink className=" w-4 h-4" />
+              <ExternalLink className=" w-4 h-4" />
           </div>
           <span class="sr-only">Open menu</span>
         </Button>

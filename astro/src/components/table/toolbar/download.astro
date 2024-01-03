@@ -5,7 +5,7 @@ import Seperator from '../../core/seperator.astro'
 import {cn} from '../../../../common/utils'
 import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
 
-import * as Icon from '@astropub/icons';
+import { Download } from '@astropub/icons';
 
 const {table, className, sideOffset} = Astro.props as {
     table: string,
@@ -27,7 +27,7 @@ const formatVariants = [
 <Astronav closeOnClick>
     <Dropdown class="relative">
         <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
-            <Icon.Download class="w-4 h-4 mr-2" />
+            <Download class="w-4 h-4 mr-2" />
             <span class="mt-0.5">Download</span>
         </Button>
         <DropdownItems data-state="open" class={cn(
