@@ -1,9 +1,20 @@
 ---
-import { cn } from '../../../../../common/utils';
-import { badgeVariants } from '../../../ts/badgeVariants'
 import Badge from "../../../core/badge.astro";
+import { ProposalCategories,  ProposalCategory} from "../../../../../models";
+import { Options } from "../../toolbar/data-table-filter.astro";
 
-const {title, category} = Astro.props;
+export const proposalCategoryOptions: Options[] = ProposalCategories.map((category) => {
+    return {
+        value: category,
+    };
+});
+
+interface TitleProps {
+    title: string;
+    category: ProposalCategory;
+}
+
+const {title, category} = Astro.props as TitleProps;
 ---
 <td class="p-2 align-middle">
     <div class="flex space-x-2 min-w-[350px]">

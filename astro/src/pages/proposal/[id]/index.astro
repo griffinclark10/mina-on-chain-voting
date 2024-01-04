@@ -6,6 +6,7 @@ import PageHeaderDescription from '../../../components/page-header/description.a
 import SmallerPageHeaderDescription from '../../../components/page-header/smaller-description.astro';
 import VotesMetrics from '../../../components/vote-metrics/vote-metrics.astro';
 import Seperator from '../../../components/core/seperator.astro';
+import VotesTable from '../../../components/table/votes-table.astro';
 
 export async function getStaticPaths() {
     const ids = ['1', '2', '3', '4']; 
@@ -53,10 +54,10 @@ const id = Astro.params.id;
             </SmallerPageHeaderDescription>
         </PageHeader>
 
-        <div className="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
             <VotesMetrics variant="results" />
             <Seperator />
-            
+            <VotesTable />
         </div>
     </div>
 </Layout>

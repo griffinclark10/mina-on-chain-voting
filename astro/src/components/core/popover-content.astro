@@ -38,7 +38,7 @@ const isFiltered: boolean = false;
 							<Checkbox class="w-4 h-4" />
 						</div>
 						<label key={option.value} class="relative flex cursor-default select-none items-center">
-							<option.icon class="mr-2 h-4 w-4 text-muted-foreground" />
+							{option.icon ? <option.icon class="mr-2 h-4 w-4 text-muted-foreground" /> : null}
 							{option.value}
 						</label>
 					</li>
