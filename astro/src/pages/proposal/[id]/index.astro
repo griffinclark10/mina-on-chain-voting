@@ -3,7 +3,6 @@ import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/page-header/page-header.astro';
 import PageHeaderHeading from '../../../components/page-header/heading.astro';
 import PageHeaderDescription from '../../../components/page-header/description.astro';
-import SmallerPageHeaderDescription from '../../../components/page-header/smaller-description.astro';
 import VotesMetrics from '../../../components/vote-metrics/vote-metrics.astro';
 import Seperator from '../../../components/core/seperator.astro';
 import VotesTable from '../../../components/table/votes-table.astro';
@@ -16,8 +15,6 @@ export async function getStaticPaths() {
 }
 
 const id = Astro.params.id;
-
-//const proposal = await getProposal(id);
 ---
 <Layout>
     <div className="container relative">
@@ -25,37 +22,15 @@ const id = Astro.params.id;
             <PageHeaderHeading>Easier zkApp programmability on mainnet</PageHeaderHeading>
             <PageHeaderDescription>Adding programmable smart contracts (zkApps) to the Mina protocol.
             </PageHeaderDescription>
-            <SmallerPageHeaderDescription className="text-base max-w-[1000px]">
-                Authoritative document: {' '}
-                <a
-                    href="https://google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-logoOrange"
-                >
-                    Google.com
-                </a>
-            </SmallerPageHeaderDescription>
         </PageHeader>
     
         <PageHeader className="block md:hidden pb-6 text-center">
             <PageHeaderHeading className="text-2xl">Easier zkApp programmability on mainnet</PageHeaderHeading>
             <PageHeaderDescription className="text-base">Adding programmable smart contracts (zkApps) to the Mina protocol.</PageHeaderDescription>
-            <SmallerPageHeaderDescription className="text-base max-w-[1000px]">
-                Authoritative document: {' '}
-                <a
-                    href="https://google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-logoOrange"
-                >
-                    Google.com
-                </a>
-            </SmallerPageHeaderDescription>
         </PageHeader>
 
         <div class="flex flex-col gap-2">
-            <VotesMetrics variant="results" />
+            <VotesMetrics variant="default" />
             <Seperator />
             <VotesTable />
         </div>
