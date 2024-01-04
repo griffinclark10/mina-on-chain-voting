@@ -13,7 +13,6 @@ interface Props extends React.ComponentProps<typeof Card> {
 
 export const VotesMetricsChart = ({ data, className }: Props) => {
   useTheme();
-
   return (
     <Card className={className}>
       <CardHeader className="pb-0">
