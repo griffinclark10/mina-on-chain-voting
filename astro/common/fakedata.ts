@@ -136,7 +136,7 @@ export const votes =
       "Account": "B62qcc3XYlKVKeFYgZEdDBBBdjPLP0euc0UDXt5",
       "Hash": "1Oey07AJwMRM99WWod7WdpxUPEUiKfo13MbDFhrU",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Orphaned"
     },
     {
       "Height": 255408,
@@ -144,7 +144,7 @@ export const votes =
       "Account": "B62qGQWCCG65DyppcdEeYmdh26oLSAASi7PGzSM",
       "Hash": "53pdVmvX8ZSBNNj1DlfwWEfHBkBgExvMexLj6VKu",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Pending"
     },
     {
       "Height": 255353,
@@ -160,7 +160,7 @@ export const votes =
       "Account": "B62qPBGZ0TDonCEyqZZkkeYf0tdZfjJv2sdF2l2",
       "Hash": "PhFQRbKEVkhxGoqGfWqqkkXiHVMX6IuEq9URtRyH",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Orphaned"
     },
     {
       "Height": 255340,
@@ -168,7 +168,7 @@ export const votes =
       "Account": "B62qcc3XYlKVKeFYgZEdDBBBdjPLP0euc0UDXt5",
       "Hash": "1Oey07AJwMRM99WWod7WdpxUPEUiKfo13MbDFhrU",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Orphaned"
     },
     {
       "Height": 255408,
@@ -176,7 +176,7 @@ export const votes =
       "Account": "B62qGQWCCG65DyppcdEeYmdh26oLSAASi7PGzSM",
       "Hash": "53pdVmvX8ZSBNNj1DlfwWEfHBkBgExvMexLj6VKu",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Pending"
     },
     {
       "Height": 255353,
@@ -192,6 +192,6 @@ export const votes =
       "Account": "B62qPBGZ0TDonCEyqZZkkeYf0tdZfjJv2sdF2l2",
       "Hash": "PhFQRbKEVkhxGoqGfWqqkkXiHVMX6IuEq9URtRyH",
       "Vote": "AGAINST",
-      "Status": "Non-Canonical"
+      "Status": "Pending"
     }
   ]

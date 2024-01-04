@@ -1,14 +1,10 @@
 ---
 import { siteConfig } from '../../common/config';
 import { cn } from '../../common/utils';
-import * as Icon from '@astropub/icons';
+import { GitHubLogo } from '@astropub/icons';
 import  {buttonVariants}  from './ts/buttonVariants';
 // import {ThemeToggle} from './core/theme-toggle';
 import NavigationDesktop from './layout-nav-desktop.astro';
-
-// console.log(buttonVariants({
-//   variant: 'ghost',
-// }));
 
 ---
 <style>
@@ -42,7 +38,7 @@ import NavigationDesktop from './layout-nav-desktop.astro';
                 'w-9 px-0'
               )}
             >
-            <Icon.GitHubLogo />
+            <GitHubLogo />
               <span class="sr-only">GitHub</span>
             </div>
           </a>

@@ -2,15 +2,14 @@
 import Seperator from '../../core/seperator.astro';
 import Badge from '../../core/badge.astro';
 import PopoverContent from '../../core/popover-content.astro';
+import Button from '../../core/button.astro';
 
-import { cn } from '../../../../common/utils';
-import { buttonVariants } from '../../ts/buttonVariants';
+import { ProposalCategory } from '../../../../models';
 
 import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
 import { PlusCircled } from '@astropub/icons';
-import Button from '../../core/button.astro';
 
-type IconType = typeof Icon;
+type IconType = typeof PlusCircled;
 
 export interface Options {
   value: string;
@@ -25,10 +24,10 @@ interface Props {
 
 const { column, title, options } = Astro.props as Props;
 // hard coding selected values, will need to make this an atom?
-const selectedValues = new Set(['1', '2']);
+const selectedValues = new Set(['1']);
 
 ---
-<Astronav>
+<Astronav closeOnClick>
     <Dropdown class="relative">
         <!-- <div class="relative"> -->
             <Button id=`toggle-popover-${column}` data-popover-target="popover-default" variant="outline" size="sm" className="h-8 border-dashed">

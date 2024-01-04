@@ -17,7 +17,7 @@ const updateDisplayedRows = (currentPage?: number) => {
   const itemsPerPage = 10;
   const start = (effectivePage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  console.log("Start, end: ", start, end)
+  // console.log("Start, end: ", start, end)
   visibleRows.set(rows.slice(start, end))
 };
 
@@ -34,7 +34,7 @@ currentPage.subscribe((value) => {
 
 ---
 <div class="space-y-4">
-  <Toolbar />
+  <Toolbar proposal={true}/>
   <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
     <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
       <TableHeader proposal={true}/>
@@ -44,8 +44,8 @@ currentPage.subscribe((value) => {
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
             <Status status={row.status}/>
-            <Timestamp time={row.votingStart}/>
-            <Timestamp time={row.votingEnd}/>
+            <Timestamp time={row.votingStart} proposal={true}/>
+            <Timestamp time={row.votingEnd} proposal={true}/>
             <Results status={row.status} id={row.key} />
           </tr>
         ))}

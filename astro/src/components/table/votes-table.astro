@@ -1,29 +1,34 @@
 ---
 import TableHeader from './header.astro'
-import Hash from './cols/votes/hash.astro';
 import Height from './cols/votes/height.astro';
 import Timestamp from './cols/proposal/timestamp.astro';
-import Status from './cols/proposal/status.astro';
+import Account from './cols/votes/account.astro';
+import Hash from './cols/votes/hash.astro';
+import Vote from './cols/votes/vote.astro';
+import Status from './cols/votes/status.astro';
 
 import { votes } from '../../../common/fakedata';
-
+import Pagination from './pagination.astro';
+import Toolbar from './toolbar/toolbar.astro';
 ---
 <div class="space-y-4">
+    <Toolbar proposal={false}/>
     <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
         <table class="w-full caption-bottom text-sm" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
                 {votes.map((vote) => (
                     <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                        <Height hash={vote.Height} />
-                        <Timestamp timestamp={vote.Timestamp} />
-                        
+                        <Height height={vote.Height} />
+                        <Timestamp time={vote.Timestamp} proposal={false}/>
+                        <Account account={vote.Account} />
                         <Hash hash={vote.Hash} />
-
+                        <Vote direction={vote.Vote} />
                         <Status status={vote.Status} />
                     </tr>
                 ))}
             </tbody>
         </table>
     </div>
+    <Pagination />
 </div>
