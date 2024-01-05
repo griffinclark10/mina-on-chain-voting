@@ -1,12 +1,10 @@
 import ApexCharts from 'apexcharts';
 import '../../../globals.css';
-// import {foreground, } from 'tailwind.config.mjs';
 
 const root = document.documentElement;
 const style = getComputedStyle(root);
 const foreground = style.getPropertyValue('--foreground');
 const mutedForeground = style.getPropertyValue('--muted-foreground').trim();
-// alert("'" + mutedForeground + "'")
 
 const chartData = {
     FOR: [45, 52, 38, 45, 19, 23, 52],
@@ -34,6 +32,9 @@ var options = {
         },
         toolbar: {
             show: false,
+        },
+        zoom: {
+            enabled: false,
         },
     },
     colors: ["#EDA13A", foreground],
@@ -63,17 +64,19 @@ var options = {
         }
     ],
     tooltip: {
-        custom: function(series: any) {
+        custom: function (series: any) {
+            var dpi = series.dataPointIndex;
+
             return (
                 '<div class="arrow_box rounded-lg border bg-background p-2 shadow-sm">' +
                 '<div class="grid grid-cols-2 gap-2">' +
                 '<div class="flex flex-col">' +
                 `<span style="font-size: 0.70rem; text-transform: uppercase; color: ${mutedForeground}">For</span>` +
-                '<span class="font-bold">12</span>' +
+                '<span class="font-bold">' + series.series[0][dpi] + '</span>' +
                 '</div>' +
                 '<div class="flex flex-col">' +
                 `<span style="font-size: 0.70rem; text-transform: uppercase; color: ${mutedForeground}">Against</span>` +
-                `<span class="font-bold" style="color: ${mutedForeground}">0</span>` +
+                `<span class="font-bold" style="color: ${mutedForeground}">` + series.series[1][dpi] + `</span>` +
                 '</div>' +
                 '</div>' +
                 '</div>'
@@ -82,6 +85,9 @@ var options = {
     },
     xaxis: {
         categories: chartData.DATE,
+        tooltip: {
+            enabled: false,
+        }
     },
     yaxis: {
         show: false,
