@@ -18,7 +18,7 @@ const {title, category} = Astro.props as TitleProps;
 ---
 <td class="p-2 align-middle">
     <div class="flex space-x-2 min-w-[350px]">
-        <Badge variant="outline" className="bg-gray-200/10 dark:bg-gray-500/10">
+        <Badge variant="outline" className="bg-gray-200/10 dark:bg-gray-500/10 border-secondary">
             {category}
         </Badge>
         <span class="truncate font-medium">{title}</span>

@@ -35,12 +35,12 @@ currentPage.subscribe((value) => {
 ---
 <div class="space-y-4">
   <Toolbar proposal={true}/>
-  <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
+  <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
     <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
       <TableHeader proposal={true}/>
       <tbody class="[&_tr:last-child]:border-0">
         {visibleRows.value?.map((row) => (
-          <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+          <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
             <Status status={row.status}/>

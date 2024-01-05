@@ -4,6 +4,6 @@ import { DialogProps } from './dialog.astro';
 
 const { className, ...props } = Astro.props as DialogProps;
 ---
-<h1 class={cn('text-lg font-semibold leading-none tracking-tight', className)} {...props}>
+<h1 class={cn('text-lg text-secondary-foreground font-semibold leading-none tracking-tight', className)} {...props}>
     <slot />
 </h1>

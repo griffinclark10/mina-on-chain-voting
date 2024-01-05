@@ -56,6 +56,12 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: 'Inter', sans-serif;
+    border: var(--secondary);
   }
 }
+
+body {
+  @apply text-foreground;
+}
+
 

@@ -8,6 +8,6 @@ export type CardProps = {
 const { className, ...props} = Astro.props as CardProps;
 
 ---
-<div class={cn('rounded-lg border bg-card text-card-foreground shadow', className)} {...props}>
+<div class={cn('rounded-lg border border-secondary bg-card text-card-foreground shadow', className)} {...props}>
     <slot />
 </div>

@@ -13,12 +13,12 @@ import Toolbar from './toolbar/toolbar.astro';
 ---
 <div class="space-y-4">
     <Toolbar proposal={false}/>
-    <div class="border rounded-lg w-full overflow-x-scroll overflow-y-visible">
+    <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
         <table class="w-full caption-bottom text-sm" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
                 {votes.map((vote) => (
-                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                    <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                         <Height height={vote.Height} />
                         <Timestamp time={vote.Timestamp} proposal={false}/>
                         <Account account={vote.Account} />
