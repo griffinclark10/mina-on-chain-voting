@@ -9,7 +9,7 @@ import {
   ProposalResultsParser,
   ProposalStatus,
   VoteDirection,
-  VoteMetrics,
+  VoteMetrics
 } from 'models';
 import moment from 'moment';
 
@@ -19,7 +19,7 @@ export enum QueryKeys {
   INFO = 'info',
   PROPOSAL = 'proposal',
   PROPOSAL_LIST = 'proposal-list',
-  PROPOSAL_RESULT = 'proposal-result',
+  PROPOSAL_RESULT = 'proposal-result'
 }
 
 export const getCoreApiInfo = async () => {
@@ -39,7 +39,7 @@ export const getProposal = async (id: number | string) => {
   return {
     ...processedProposal,
     votes: processedVotes.votes,
-    metrics: processedVotes.metrics,
+    metrics: processedVotes.metrics
   };
 };
 
@@ -54,7 +54,7 @@ export const getProposalResults = async (id: number | string) => {
   return {
     ...processedProposal,
     votes: processedVotes.votes,
-    metrics: processedVotes.metrics,
+    metrics: processedVotes.metrics
   };
 };
 
@@ -93,13 +93,13 @@ const processVotes = <T extends ProposalParserOutcome['votes'][number]>(
 
     return {
       ...vote,
-      direction: direction as VoteDirection,
+      direction: direction as VoteDirection
     };
   });
 
   return {
     votes: processedVotes,
-    metrics: Object.values(groupedVotes).reverse(),
+    metrics: Object.values(groupedVotes).reverse()
   };
 };
 
@@ -129,6 +129,6 @@ const processProposal = <T extends ProposalListParserOutcome[number]>(
       ? 'In Review'
       : isDone
       ? 'Completed'
-      : 'Unknown',
+      : 'Unknown'
   };
 };

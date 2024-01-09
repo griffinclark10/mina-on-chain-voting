@@ -10,7 +10,10 @@ const formatError = (error: z.ZodError) => {
 };
 
 export class GenericParsingError extends Error {
-  constructor(public readonly key: string, public readonly innerError?: z.ZodError) {
+  constructor(
+    public readonly key: string,
+    public readonly innerError?: z.ZodError
+  ) {
     super(`Failed to parse raw shape ${key} with error: ${innerError ? formatError(innerError) : 'Unknown'}`);
   }
 }

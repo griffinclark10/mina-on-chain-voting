@@ -1,5 +1,9 @@
 export class SafeFetchError extends Error {
-  constructor(public readonly url: string, public readonly status: number, public readonly statusText: string) {
+  constructor(
+    public readonly url: string,
+    public readonly status: number,
+    public readonly statusText: string
+  ) {
     super(`safeFetch request to ${url} failed with message ${status} - ${statusText}`);
   }
 }

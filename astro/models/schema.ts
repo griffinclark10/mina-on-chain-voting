@@ -11,7 +11,7 @@ export type VoteStatus = (typeof VoteStatuses)[number];
 export const VoteMetricsSchema = z.object({
   DATE: z.string(),
   FOR: z.number(),
-  AGAINST: z.number(),
+  AGAINST: z.number()
 });
 export type VoteMetrics = z.infer<typeof VoteMetricsSchema>;
 
@@ -22,12 +22,12 @@ export const VoteSchema = z.object({
   height: z.number(),
   status: VoteStatusSchema,
   timestamp: z.number(),
-  nonce: z.number(),
+  nonce: z.number()
 });
 
 export const VoteWithWeightSchema = VoteSchema.and(
   z.object({
-    weight: z.coerce.number(),
+    weight: z.coerce.number()
   })
 );
 
@@ -49,12 +49,12 @@ export const ProposalSchema = z.object({
   version: z.string(),
   title: z.string(),
   description: z.string(),
-  url: z.string(),
+  url: z.string()
 });
 
 export const getProposalSchema = ProposalSchema.and(
   z.object({
-    votes: z.array(VoteSchema),
+    votes: z.array(VoteSchema)
   })
 );
 
@@ -63,13 +63,13 @@ export const getProposalResultsSchema = ProposalSchema.and(
     total_stake_weight: z.coerce.number(),
     positive_stake_weight: z.coerce.number(),
     negative_stake_weight: z.coerce.number(),
-    votes: z.array(VoteWithWeightSchema),
+    votes: z.array(VoteWithWeightSchema)
   })
 );
 
 export const getCoreApiInfoResponseSchema = z.object({
   chain_tip: z.number(),
-  current_slot: z.number(),
+  current_slot: z.number()
 });
 
 export const getProposalsSchema = z.array(ProposalSchema);

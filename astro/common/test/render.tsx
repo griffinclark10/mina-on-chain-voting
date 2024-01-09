@@ -14,7 +14,7 @@ const MockNextNavigation = {
   useRouter: () => memoryRouter,
   usePathname: () => memoryRouter.asPath,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  useSearchParams: () => new URLSearchParams(memoryRouter.query as any),
+  useSearchParams: () => new URLSearchParams(memoryRouter.query as any)
 };
 
 type MemoryRouterProviderOptions = typeof MemoryRouterProvider.defaultProps;
@@ -43,12 +43,12 @@ const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
 
   const renderResult = render(ui, {
     wrapper: (props) => <GlobalRenderProvider {...props} memoryRouterProps={options?.memoryRouter} />,
-    ...options,
+    ...options
   });
 
   return {
     ...renderResult,
-    user,
+    user
   };
 };
 

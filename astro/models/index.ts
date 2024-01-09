@@ -19,7 +19,7 @@ import {
   VoteMetricsSchema,
   VoteStatus,
   VoteStatuses,
-  VoteStatusSchema,
+  VoteStatusSchema
 } from './schema';
 
 class ZodParser<T, K extends z.ZodSchema<T>> {
@@ -68,5 +68,5 @@ export {
   VoteDirectionSchema,
   type VoteDirection,
   VoteMetricsSchema,
-  type VoteMetrics,
+  type VoteMetrics
 };
