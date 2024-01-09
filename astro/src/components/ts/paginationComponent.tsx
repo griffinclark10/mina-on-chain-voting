@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { buttonVariants } from './buttonVariants';
 import { cn } from '../../../common/utils';
 import { rows } from 'common/fakedata';
-import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons';
+// import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons';
 import { currentPage, numPages } from '../ts/pagination';
 import { useStore } from '@nanostores/react';
 
@@ -49,7 +49,7 @@ export const Pagination = () => {
             onClick={() => handlePageChange(1)}
           >
             <span className="sr-only">Go to first page</span>
-            <DoubleArrowLeftIcon className="h-4 w-4" />
+            {/* <DoubleArrowLeftIcon className="h-4 w-4" /> */}
           </button>
           <button
             id="prev-page"
@@ -58,7 +58,7 @@ export const Pagination = () => {
             onClick={() => console.log('Previous page clicked')}
           >
             <span className="sr-only">Go to first page</span>
-            <ChevronLeftIcon className="h-4 w-4" />
+            {/* <ChevronLeftIcon className="h-4 w-4" /> */}
           </button>
           <button
             id="next-page"
@@ -67,7 +67,7 @@ export const Pagination = () => {
             onClick={() => alert('Clicked')}
           >
             <span className="sr-only">Go to first page</span>
-            <ChevronRightIcon className="h-4 w-4" />
+            {/* <ChevronRightIcon className="h-4 w-4" /> */}
           </button>
           <button
             id="last-page"
@@ -76,7 +76,7 @@ export const Pagination = () => {
             onClick={() => alert($numPagesVal)}
           >
             <span className="sr-only">Go to first page</span>
-            <DoubleArrowRightIcon className="h-4 w-4" />
+            {/* <DoubleArrowRightIcon className="h-4 w-4" /> */}
           </button>
           <button className="bg-blue-200" onClick={() => console.log('last button')}>
             Value
