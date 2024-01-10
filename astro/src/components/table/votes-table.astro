@@ -10,14 +10,23 @@ import Status from './cols/votes/status.astro';
 import { votes } from '../../../common/fakedata';
 import Pagination from './pagination.astro';
 import Toolbar from './toolbar/toolbar.astro';
+
+const url = new URL(Astro.request.url);
+const currentPage: number = parseInt(url.searchParams.get('page') ?? "1");
+const itemsPerPage = 10;
+const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const numPages = Math.ceil(votes.length / itemsPerPage);
+let visibleRows = votes.slice(start, end);
+
 ---
 <div class="space-y-4">
     <Toolbar proposal={false}/>
-    <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
+    <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible z-0">
         <table class="w-full caption-bottom text-sm" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
-                {votes.map((vote) => (
+                {visibleRows.map((vote) => (
                     <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                         <Height height={vote.Height} />
                         <Timestamp time={vote.Timestamp} proposal={false}/>
@@ -30,5 +39,5 @@ import Toolbar from './toolbar/toolbar.astro';
             </tbody>
         </table>
     </div>
-    <Pagination />
+    <Pagination numPages={numPages}/>
 </div>

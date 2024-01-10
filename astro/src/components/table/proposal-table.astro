@@ -9,37 +9,22 @@ import Toolbar from './toolbar/toolbar.astro';
 import  Pagination from './pagination.astro';
 
 import { rows } from '../../../common/fakedata';
-import {currentPage, numPages, visibleRows} from '../ts/pagination';
 
-const updateDisplayedRows = (currentPage?: number) => {
-  // Default to page 1 if currentPage is undefined
-  const effectivePage = currentPage ?? 1;
-  const itemsPerPage = 10;
-  const start = (effectivePage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  // console.log("Start, end: ", start, end)
-  visibleRows.set(rows.slice(start, end))
-};
-
-const handlePageChange = (pageNumber: number) => {
-        alert(`Page changed to ${pageNumber}`)
-        currentPage.set(pageNumber);
-        console.log(`Current page is now ${currentPage.value}`)
-    };
-// const rowValue: number = currentPage.value ? currentPage.value : 1;
-currentPage.subscribe((value) => {
-  console.log(value)
-  updateDisplayedRows(value)
-})
-
+const url = new URL(Astro.request.url);
+const currentPage: number = parseInt(url.searchParams.get('page') ?? "1");
+const itemsPerPage = 10;
+const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const numPages = Math.ceil(rows.length / itemsPerPage);
+let visibleRows = rows.slice(start, end);
 ---
 <div class="space-y-4">
   <Toolbar proposal={true}/>
   <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
-    <table class="w-full caption-bottom text-sm" id="data-table" data-page={currentPage}>
+    <table class="w-full caption-bottom text-sm" id="data-table">
       <TableHeader proposal={true}/>
       <tbody class="[&_tr:last-child]:border-0">
-        {visibleRows.value?.map((row) => (
+        {visibleRows.map((row) => (
           <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
@@ -52,19 +37,5 @@ currentPage.subscribe((value) => {
       </tbody>
     </table>
   </div>
-  <Pagination/>
+  <Pagination numPages={numPages}/>
 </div>
-
-<script define:vars={{currentPage}}>
-  
-  document.getElementById('btn1').addEventListener('click', () => testFunction());
-
-  const testFunction = () => {
-    try {
-      currentPage.set(1);
-      alert("Current page is now 1")
-    } catch (e) {
-      alert("Error: " + e);
-    }
-  }
-</script>
