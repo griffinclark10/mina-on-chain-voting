@@ -1,9 +1,8 @@
 ---
 import { cn } from '../../../common/utils';
-// import SeparatorPrimitive from '@radix-ui/react-separator';
 
 const { orientation = 'horizontal', className} = Astro.props as { orientation: 'horizontal' | 'vertical', decorative: boolean, className: string };
 ---
 <hr
-  className={cn('shrink-0 bg-secondary', orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]', className)} 
+  class={cn('shrink-0 bg-secondary', orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]', className)} 
 />
