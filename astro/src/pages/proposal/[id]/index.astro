@@ -7,6 +7,8 @@ import VotesMetrics from '../../../components/vote-metrics/vote-metrics.astro';
 import Seperator from '../../../components/core/seperator.astro';
 import VotesTable from '../../../components/table/votes-table.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     const ids = ['1', '2', '3', '4']; 
     return ids.map(id => {
@@ -17,7 +19,7 @@ export async function getStaticPaths() {
 const id = Astro.params.id;
 ---
 <Layout>
-    <div className="container relative">
+    <div class="container relative">
         <PageHeader className="hidden md:block pb-6">
             <PageHeaderHeading>Easier zkApp programmability on mainnet</PageHeaderHeading>
             <PageHeaderDescription>Adding programmable smart contracts (zkApps) to the Mina protocol.

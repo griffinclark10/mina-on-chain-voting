@@ -4,7 +4,7 @@ export const votesHeaders = ['Height', 'Timestamp', 'Account', 'Hash', 'Vote', '
 
 export const rows = [
   {
-    key: 'MIP1',
+    key: '1',
     category: 'Best Picture',
     title: 'Nomadland',
     status: 'Completed',
@@ -13,7 +13,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP2',
+    key: '2',
     category: 'Best Actor',
     title: 'Anthony Hopkins',
     status: 'In Progress',
@@ -22,7 +22,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP3',
+    key: '3',
     category: 'Best Actress',
     title: 'Frances McDormand',
     status: 'Completed',
@@ -31,7 +31,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP4',
+    key: '4',
     category: 'Best Director',
     title: 'Chloé Zhao',
     status: 'In Review',
@@ -40,7 +40,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP5',
+    key: '5',
     category: 'Best Original Screenplay',
     title: 'Promising Young Woman',
     status: 'Pending',
@@ -49,7 +49,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP6',
+    key: '6',
     category: 'Best Adapted Screenplay',
     title: 'The Father',
     status: 'In Progress',
@@ -58,7 +58,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP7',
+    key: '7',
     category: 'Best Cinematography',
     title: 'Mank',
     status: 'In Review',
@@ -67,7 +67,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP8',
+    key: '8',
     category: 'Best Editing',
     title: 'Sound of Metal',
     status: 'Completed',
@@ -76,7 +76,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP9',
+    key: '9',
     category: 'Best Visual Effects',
     title: 'Tenet',
     status: 'Pending',
@@ -85,7 +85,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP10',
+    key: '10',
     category: 'Best Production Design',
     title: 'The Father',
     status: 'In Progress',
@@ -94,7 +94,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP11',
+    key: '11',
     category: 'Best Costume Design',
     title: "Ma Rainey's Black Bottom",
     status: 'In Review',
@@ -103,7 +103,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP12',
+    key: '12',
     category: 'Best Production Design',
     title: 'The Father',
     status: 'In Progress',
@@ -112,7 +112,7 @@ export const rows = [
     resultsLink: 'https://www.oscars.org/oscars/ceremonies/2021'
   },
   {
-    key: 'MIP13',
+    key: '13',
     category: 'Best Picture',
     title: 'No Country For Old Men',
     status: 'Completed',

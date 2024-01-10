@@ -1,15 +1,15 @@
 ---
 import { DoubleArrowLeft, ChevronLeft, ChevronRight, DoubleArrowRight } from '@astropub/icons';
-
-import { currentPage, numPages } from '../ts/pagination';
 import Button from '../core/button.astro';
 
-const disabled: Boolean = numPages.value === 1 ? true : false;
+const url = new URL(Astro.request.url);
+const currentPage: string = url.searchParams.get('page') || '';
+const numPages: number = 10;
 
 ---
 <div class="flex items-center justify-between px-2 flex-row">
     <div id="page-indicator" class="flex-1 text-sm text-muted-foreground">
-        Page {currentPage.value} of {numPages.value}
+        Page {currentPage} of {numPages}
     </div>
     <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-2">
@@ -17,7 +17,6 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 id="first-page"
                 className="h-8 w-8 p-0 hidden lg:flex"
                 variant="outline"
-                disabled={disabled}
 =            >
                 <span class="sr-only">Go to first page</span>
                 <DoubleArrowLeft class="h-4 w-4" />
@@ -26,54 +25,73 @@ const disabled: Boolean = numPages.value === 1 ? true : false;
                 id="prev-page"
                 className="h-8 w-8 p-0 lg:flex"
                 variant="outline"
-                disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
                 <ChevronLeft class="h-4 w-4" />
             </Button> 
             <Button 
-                id="prev-page"
+                id="next-page"
                 className="h-8 w-8 p-0 lg:flex"
                 variant="outline"
-                disabled={disabled}
             >
                 <span class="sr-only">Go to first page</span>
                 <ChevronRight class="h-4 w-4" />
             </Button> 
             <Button 
-                id="first-page"
+                id="last-page"
                 className="h-8 w-8 p-0 hidden lg:flex"
                 variant="outline"
-                disabled={disabled}
-=            >
+            >
                 <span class="sr-only">Go to first page</span>
                 <DoubleArrowRight class="h-4 w-4" />
-            </button> 
+            </Button> 
         </div>
     </div>
 </div>
 
-<script type="module" define:vars={{currentPage, numPages}}>
+<script type="module">
+    const numPages = 5;
+    const url = new URL(window.location);
+    const currentPage = parseInt(url.searchParams.get('page')) || 1;
 
-    function goToPage(pageNumber) {
-        try {
-            console.log("goToPage initially called");
-            if (pageNumber < 1 || pageNumber > numPages.value) {
-                return;
-            }
-            // alert("goToPage correctly called: " + pageNumber);
-            currentPage.set(pageNumber);
-        } catch (error) {
-            alert("Error setting currentPage: " + error + "!!!");
+    document.addEventListener('DOMContentLoaded', function() {
+        const FirstPageButton = document.getElementById('first-page');
+        const PrevPageButton = document.getElementById('prev-page');
+        const NextPageButton = document.getElementById('next-page');
+        const LastPageButton = document.getElementById('last-page');
+        if (currentPage === 1) {
+            FirstPageButton.disabled = true;
+            PrevPageButton.disabled = true;
         }
-    }
+        else if (currentPage === numPages) {
+            NextPageButton.disabled = true;
+            LastPageButton.disabled = true;
+        }
+    });
+    
+    document.getElementById('first-page').addEventListener('click', function() {
+        url.searchParams.set('page', 1);
+        window.location.href = url;
+    });
 
-    const updatePageIndicator = () => {
-        document.getElementById('page-indicator').textContent = `Page ${$currentPage.value} of ${$numPages.value}`;
-    };
+    document.getElementById('prev-page').addEventListener('click', function() {
+        if (currentPage === 1) {
+            return;
+        }
+        url.searchParams.set('page', currentPage - 1);
+        window.location.href = url;
+    });
 
-    document.getElementById('first-page').addEventListener('click', () => {goToPage(1)});
-    document.getElementById('prev-page').addEventListener('click', () => goToPage(currentPage.value - 1));
-    document.getElementById('next-page').addEventListener('click', () => goToPage(currentPage.value + 1));
-    document.getElementById('last-page').addEventListener('click', () => goToPage(numPages.value));
+    document.getElementById('next-page').addEventListener('click', function() {
+        if (currentPage === numPages) {
+            return;
+        }
+        url.searchParams.set('page', currentPage + 1);
+        window.location.href = url;
+    });
+
+    document.getElementById('last-page').addEventListener('click', function() {
+        url.searchParams.set('page', numPages);
+        window.location.href = url;
+    });
 </script>
