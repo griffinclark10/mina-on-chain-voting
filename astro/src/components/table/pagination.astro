@@ -6,8 +6,6 @@ const { numPages } = Astro.props as { numPages: number };
 
 const url = new URL(Astro.request.url);
 const currentPage: string = url.searchParams.get('page') || '1';
-// const numPages: number = 10;
-console.log(numPages);
 ---
 <div id="pagination" class="flex items-center justify-between px-2 flex-row" data-numPages={numPages}>
     <div id="page-indicator" class="flex-1 text-sm text-muted-foreground">
