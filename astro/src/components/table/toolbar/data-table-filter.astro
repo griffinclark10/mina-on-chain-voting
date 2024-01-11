@@ -23,41 +23,96 @@ interface Props {
 }
 
 const { column, title, options } = Astro.props as Props;
-// hard coding selected values, will need to make this an atom?
-const selectedValues = new Set(['1']);
-
+let selectedValues = new Set(['1', '2']);
 ---
-<Astronav closeOnClick>
-    <Dropdown class="relative">
-        <!-- <div class="relative"> -->
-            <Button id=`toggle-popover-${column}` data-popover-target="popover-default" variant="outline" size="sm" className="h-8 border-dashed">
-                <PlusCircled class="mr-2 h-4 w-4" />
-                {title}
-                {selectedValues.size > 0 && (
-                    <>
-                        <Seperator orientation="vertical" className="mx-2 h-4" />
-                        <Badge variant="secondary" size="sm" className="rounded-sm px-1 font-normal lg:hidden">
-                            {selectedValues.size}
-                        </Badge>
-                        <div className="hidden space-x-1 lg:flex">
-                            {selectedValues.size > 2 ? (
-                                <Badge variant="secondary" className="rounded-sm px-1 font-normal">
-                                    {selectedValues.size} selected
-                                </Badge>
-                            ) : (
-                                options.filter((option) => selectedValues.has(option.value))
-                                .map((option) => (
-                                    <Badge variant="secondary" className="rounded-sm px-1 font-normal">
-                                        {option.value}
-                                    </Badge>
-                                ))
-                            )}
-                        </div>
-                    </>
-                )}
-            </Button>
-            <DropdownItems className="border-secondary">
-                <PopoverContent title={title} options={options} className="w-[200px] p-0" align="start" />
-            </DropdownItems>
-    </Dropdown>
-</Astronav>
+<div class="astronav-dropdown-menu" data-title={options}>
+    <Astronav>
+        <Dropdown class="relative" >
+                <Button id=`toggle-popover-${column}` variant="outline" size="sm" className="h-8 border-dashed" data-popover-target="popover-default">
+                    <PlusCircled class="mr-2 h-4 w-4" />
+                    {title}
+                        <>
+                            <Seperator  orientation="vertical" className="mx-2 h-4 hidden" id={title + "-separator"}/>
+                            <Badge variant="secondary" size="sm" className="rounded-sm px-1 font-normal lg:hidden">
+                                {selectedValues.size}
+                            </Badge>
+                            <div class="badge-container hidden space-x-1 lg:flex">
+                                <!-- This is where the selected values will go -->
+                            </div>
+                        </>
+                </Button>
+                <DropdownItems class="border-secondary">
+                    <PopoverContent title={title} options={options} className="w-[200px] p-0" align="start" />
+                </DropdownItems>
+        </Dropdown>
+    </Astronav>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all instances of the filters
+        const dropdowns = document.querySelectorAll('.astronav-dropdown-menu'); 
+        dropdowns.forEach(dropdown => {
+            setupDropdown(dropdown);
+        });
+    });
+
+    // differentiate between the filter categories of the different dropdowns, add event listeners to each
+    function setupDropdown(dropdownElement: Element){
+        const optionElements = dropdownElement.querySelectorAll('.options-list li');
+        let selectedOptions = new Set<string>();
+        optionElements.forEach(element => {
+			element.addEventListener('click', () => {
+				const optionValue = element.getAttribute('data-value');
+				if (optionValue !== null) {
+					toggleSelection(optionValue, selectedOptions, dropdownElement);
+				}
+			});
+		});
+
+        //select or de-select filter check-box
+        const toggleSelection = (optionValue: string, selectedOptionsSet: Set<string>, dropdownElement: Element) => {
+			if (selectedOptionsSet.has(optionValue)) {
+				selectedOptionsSet.delete(optionValue);
+			} else {
+				selectedOptionsSet.add(optionValue);
+			}
+			updateURLParams(selectedOptionsSet);
+            updateDisplay(selectedOptionsSet, dropdownElement);
+		};
+
+        // update the display to add or remove selected filters to the badge
+        const updateDisplay = (selectedValues: Set<string>, dropdownElement: Element) => {
+            const badgeContainer = dropdownElement.querySelector('.badge-container');
+            if (!badgeContainer) {
+                return;
+            }
+            badgeContainer.innerHTML = '';
+            if (selectedValues.size > 2) {
+                
+                const badge = document.createElement('div');
+                badge.className = 'badge bg-secondary rounded-sm px-1 font-normal';
+                badge.textContent = `${selectedValues.size} selected`;
+                badgeContainer.appendChild(badge);
+            } else {
+                selectedValues.forEach(value => {
+                    const badge = document.createElement('div');
+                    badge.className = 'badge secondary rounded-sm px-1 font-normal';
+                    badge.textContent = value;
+                    badgeContainer.appendChild(badge);
+                });
+            }
+        }
+
+        // update the filter parameters in the URL
+		const updateURLParams = (selectedOptionsSet: Set<string>) => {
+			const searchParams = new URLSearchParams();
+			selectedOptionsSet.forEach(value => {
+				searchParams.append('filter', value);
+			});
+			window.history.pushState(null, '', `?${searchParams}`);
+		};
+
+    }	
+</script>
