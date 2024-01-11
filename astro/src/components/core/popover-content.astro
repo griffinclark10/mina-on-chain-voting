@@ -24,17 +24,14 @@ const isFiltered: boolean = false;
 				{options.map((option) => (
 					<li data-value={option.value} id={option.value}
 					class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-						<div
-							class={cn(
-								'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
-								isSelected ? 'bg-primary text-primary-foreground' : 'opacity-50 [&_svg]:invisible'
-							)}
-							>
-							<Checkbox class="w-4 h-4" />
+						<div data-checkboxValue={option.value}
+							class={'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&_svg]:invisible'}
+						>
+							<Checkbox  />
 						</div>
 						<label class="relative flex cursor-default select-none items-center">
 							{option.icon ? <option.icon class="mr-2 h-4 w-4 text-muted-foreground" /> : null}
-							{option.value}
+							{ option.value }
 						</label>
 					</li>
 				))}
@@ -43,34 +40,5 @@ const isFiltered: boolean = false;
 </div>
 
 <script>
-	// document.addEventListener('DOMContentLoaded', () => {
-	// 	const optionElements = document.querySelectorAll('#options-list li');
-	// 	let selectedOptions = new Set<string>();
-		
-	// 	const toggleSelection = (optionValue: string) => {
-	// 		if (selectedOptions.has(optionValue)) {
-	// 			selectedOptions.delete(optionValue);
-	// 		} else {
-	// 			selectedOptions.add(optionValue);
-	// 		}
-	// 		updateURLParams();
-	// 	};
 
-	// 	const updateURLParams = () => {
-	// 		const searchParams = new URLSearchParams();
-	// 		selectedOptions.forEach(value => {
-	// 			searchParams.append('filter', value);
-	// 		});
-	// 		window.history.pushState(null, '', `?${searchParams}`);
-	// 	};
-
-	// 	optionElements.forEach(element => {
-	// 		element.addEventListener('click', () => {
-	// 			const optionValue = element.getAttribute('data-value');
-	// 			if (optionValue !== null) {
-	// 				toggleSelection(optionValue);
-	// 			}
-	// 		});
-	// 	});
-  	// });
 </script>
