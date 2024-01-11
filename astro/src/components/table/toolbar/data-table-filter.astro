@@ -1,5 +1,5 @@
 ---
-import Seperator from '../../core/seperator.astro';
+import Separator from '../../core/separator.astro';
 import Badge from '../../core/badge.astro';
 import PopoverContent from '../../core/popover-content.astro';
 import Button from '../../core/button.astro';
@@ -31,7 +31,7 @@ const { column, title, options } = Astro.props as Props;
                     <PlusCircled class="mr-2 h-4 w-4" />
                     {title}
                         <>
-                            <Seperator  orientation="vertical" className="separator mx-2 h-4 hidden" id={title + "-separator"}/>
+                            <Separator  orientation="vertical" className="separator mx-2 h-4 hidden" id={title + "-separator"}/>
                             <Badge variant="secondary" size="sm" className="selected-count-badge rounded-sm px-1 font-normal lg:hidden">
                                 <!-- This is where the count of the selected values will go -->
                             </Badge>

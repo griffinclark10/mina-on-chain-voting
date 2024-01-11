@@ -3,7 +3,7 @@ import DialogHeader from './header.astro';
 import DialogTitle from './title.astro';
 import DialogContent from './content.astro';
 import DialogDescription from './description.astro';
-import Seperator from '../core/seperator.astro';
+import Separator from '../core/separator.astro';
 import Button from '../core/button.astro';
 
 import { Copy, Check } from '@astropub/icons';
@@ -26,7 +26,7 @@ const displayMemo = id === 'For' ? memo : `no ${memo}`;
             <DialogTitle className="text-center">
                 How do I cast my vote?
             </DialogTitle>
-            <Seperator />
+            <Separator />
             <DialogDescription className="flex flex-col gap-3">
                 <span class="text-center">
                     To cast your vote you need to send yourself a transaction with the following keyword(s) in the memo field:

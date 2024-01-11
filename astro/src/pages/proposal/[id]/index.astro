@@ -4,7 +4,7 @@ import PageHeader from '../../../components/page-header/page-header.astro';
 import PageHeaderHeading from '../../../components/page-header/heading.astro';
 import PageHeaderDescription from '../../../components/page-header/description.astro';
 import VotesMetrics from '../../../components/vote-metrics/vote-metrics.astro';
-import Seperator from '../../../components/core/seperator.astro';
+import Separator from '../../../components/core/separator.astro';
 import VotesTable from '../../../components/table/votes-table.astro';
 
 export const prerender = true;
@@ -33,7 +33,7 @@ const id = Astro.params.id;
 
         <div class="flex flex-col gap-2">
             <VotesMetrics variant="default" />
-            <Seperator />
+            <Separator />
             <VotesTable />
         </div>
     </div>
