@@ -12,11 +12,15 @@ import Toolbar from './toolbar/toolbar.astro';
 import { votes } from '../../../common/fakedata';
 import { pagination } from '../../../common/pagination';
 import { filtration } from '../../../common/filtration';
+import NoResults from './cols/no-results.astro';
 
 const url = new URL(Astro.request.url);
 let filteredRows = filtration(url, votes);
 let [visibleRows, numPages] = pagination(url, filteredRows);
-
+let queryHasRows: boolean = true;
+if (visibleRows.length === 0) {
+  queryHasRows = false;
+}
 ---
 <div class="space-y-4">
     <Toolbar proposal={false}/>
@@ -24,7 +28,7 @@ let [visibleRows, numPages] = pagination(url, filteredRows);
         <table class="w-full caption-bottom text-sm" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
-                {visibleRows.map((vote) => (
+                {queryHasRows ? visibleRows.map((vote) => (
                     <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                         <Height height={vote.Height} />
                         <Timestamp time={vote.Timestamp} proposal={false}/>
@@ -33,7 +37,9 @@ let [visibleRows, numPages] = pagination(url, filteredRows);
                         <Vote direction={vote.Vote} />
                         <Status status={vote.Status} />
                     </tr>
-                ))}
+                )) : (
+                    <NoResults />
+                )}
             </tbody>
         </table>
     </div>

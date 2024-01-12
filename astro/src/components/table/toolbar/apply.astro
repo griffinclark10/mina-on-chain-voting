@@ -1,0 +1,25 @@
+---
+import Button from "../../core/button.astro";
+
+import { cn } from "../../../../common/utils";
+import { ButtonProps } from "../../ts/buttonVariants";
+import { Pencil2 } from '@astropub/icons';
+
+const { className, ...props } = Astro.props as ButtonProps;
+---
+<Button className={cn(className, "apply-filters ml-auto h-8 lg:flex")} variant="outline" size="sm" {...props} >
+    <Pencil2 className="w-4 h-4 mr-2" />
+    Apply
+</Button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all instances of the filters
+        const apply = document.querySelector('.apply-filters'); 
+        if ( apply ) {
+            apply.addEventListener('click', () => {
+                location.reload();
+            })
+        }
+    });
+</script>

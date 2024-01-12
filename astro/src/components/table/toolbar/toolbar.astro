@@ -2,6 +2,7 @@
 import Input from "./input.astro"
 import DataTableFilter from "./data-table-filter.astro";
 import Download from "./download.astro";
+import ApplyFilterButton from './apply.astro'
 
 import { proposalTableStatuses } from '../cols/proposal/status.astro'
 import { proposalCategoryOptions } from "../cols/proposal/title.astro";
@@ -19,6 +20,7 @@ const titles: string[] = proposal ? ['Status', 'Category'] : ['Status', 'Vote'];
         <Input className="h-8 w-[150px] lg:w-[250px]" placeholder="Find proposal..." />
         <DataTableFilter column={titles[0]} title={titles[0]} options={filter1}/>
         <DataTableFilter column={titles[1]} title={titles[1]} options={filter2}/>
+        <ApplyFilterButton />
     </div>
     <Download />
 </div>
