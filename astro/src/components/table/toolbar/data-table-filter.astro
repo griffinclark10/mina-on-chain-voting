@@ -24,7 +24,7 @@ interface Props {
 
 const { column, title, options } = Astro.props as Props;
 ---
-<div class="astronav-dropdown-menu" data-title={options}>
+<div class="astronav-dropdown-menu" data-title={title}>
     <Astronav>
         <Dropdown class="relative" >
                 <Button id=`toggle-popover-${column}` variant="outline" size="sm" className="h-8 border-dashed" data-popover-target="popover-default">
@@ -52,29 +52,32 @@ const { column, title, options } = Astro.props as Props;
     //can't import badge variants for the badges in dropdown so need to manually assign className:
     const badgeClassSecondary : string = 'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-sm px-1 font-normal';
 
+    let globalSelections: Object = {};
+
     document.addEventListener('DOMContentLoaded', () => {
         // Select all instances of the filters
         const dropdowns = document.querySelectorAll('.astronav-dropdown-menu'); 
         dropdowns.forEach(dropdown => {
-            setupDropdown(dropdown);
+            const title = dropdown.getAttribute('data-title');
+            setupDropdown(dropdown, title);
         });
     });
 
     // differentiate between the filter categories of the different dropdowns, add event listeners to each
-    function setupDropdown(dropdownElement: Element){
+    function setupDropdown(dropdownElement: Element, title: string | null) {
         const optionElements = dropdownElement.querySelectorAll('.options-list li');
         let selectedOptions = new Set<string>();
         optionElements.forEach(element => {
 			element.addEventListener('click', () => {
 				const optionValue = element.getAttribute('data-value');
-				if (optionValue !== null) {
-					toggleSelection(optionValue, selectedOptions, dropdownElement);
+				if (optionValue !== null && title !== null) {
+					toggleSelection(optionValue, selectedOptions, dropdownElement, title);
 				}
 			});
 		});
 
         //select or de-select filter check-box
-        const toggleSelection = (optionValue: string, selectedOptionsSet: Set<string>, dropdownElement: Element) => {
+        const toggleSelection = (optionValue: string, selectedOptionsSet: Set<string>, dropdownElement: Element, title: string) => {
 			const optionElement = dropdownElement.querySelector(`[data-checkboxValue="${optionValue}"]`);
             if (!optionElement) {
                 return;
@@ -86,7 +89,8 @@ const { column, title, options } = Astro.props as Props;
 				selectedOptionsSet.add(optionValue);
                 toggleCheckBox(optionElement, true);
 			}
-			updateURLParams(selectedOptionsSet);
+            globalSelections[title] = selectedOptionsSet;
+			updateURLParams(globalSelections);
             updateDisplay(selectedOptionsSet, dropdownElement);
 		};
 
@@ -98,7 +102,7 @@ const { column, title, options } = Astro.props as Props;
             }
             badgeContainer.innerHTML = '';
 
-            // unhide separator if there are selected filters
+            // show separator if there are selected filters
             const separator = dropdownElement.querySelector('.separator');
             if (selectedValues.size === 0) {
                 separator?.classList.add('hidden');
@@ -129,11 +133,13 @@ const { column, title, options } = Astro.props as Props;
         }
 
         // update the filter parameters in the URL
-		const updateURLParams = (selectedOptionsSet: Set<string>) => {
+		const updateURLParams = (selectedOptionsSet: Object) => {
 			const searchParams = new URLSearchParams();
-			selectedOptionsSet.forEach(value => {
-				searchParams.append('filter', value);
-			});
+            Object.entries(selectedOptionsSet).forEach(([dropdownId, selectedValues]) => {
+                selectedValues.forEach(value => {
+                    searchParams.append(dropdownId, value);
+                });
+            });
 			window.history.pushState(null, '', `?${searchParams}`);
 		};
 

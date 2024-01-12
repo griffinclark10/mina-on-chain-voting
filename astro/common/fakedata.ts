@@ -5,7 +5,7 @@ export const votesHeaders = ['Height', 'Timestamp', 'Account', 'Hash', 'Vote', '
 export const rows = [
   {
     key: '1',
-    category: 'Best Picture',
+    category: 'Core',
     title: 'Nomadland',
     status: 'Completed',
     votingStart: 1678881600000,
@@ -191,3 +191,6 @@ export const votes = [
     Status: 'Pending'
   }
 ];
+
+export type RowType = typeof rows;
+export type VotesType = typeof votes;

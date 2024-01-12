@@ -9,14 +9,15 @@ import Toolbar from './toolbar/toolbar.astro';
 import  Pagination from './pagination.astro';
 
 import { rows } from '../../../common/fakedata';
+import { pagination } from '../../../common/pagination';
+import { filtration } from '../../../common/filtration';
 
 const url = new URL(Astro.request.url);
-const currentPage: number = parseInt(url.searchParams.get('page') ?? "1");
-const itemsPerPage = 10;
-const start = (currentPage - 1) * itemsPerPage;
-const end = start + itemsPerPage;
-const numPages = Math.ceil(rows.length / itemsPerPage);
-let visibleRows = rows.slice(start, end);
+
+//filter
+let filteredRows = filtration(url, rows);
+
+let [visibleRows, numPages] = pagination(url, filteredRows);
 ---
 <div class="space-y-4">
   <Toolbar proposal={true}/>

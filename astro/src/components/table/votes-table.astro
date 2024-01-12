@@ -6,18 +6,16 @@ import Account from './cols/votes/account.astro';
 import Hash from './cols/votes/hash.astro';
 import Vote from './cols/votes/vote.astro';
 import Status from './cols/votes/status.astro';
-
-import { votes } from '../../../common/fakedata';
 import Pagination from './pagination.astro';
 import Toolbar from './toolbar/toolbar.astro';
 
+import { votes } from '../../../common/fakedata';
+import { pagination } from '../../../common/pagination';
+import { filtration } from '../../../common/filtration';
+
 const url = new URL(Astro.request.url);
-const currentPage: number = parseInt(url.searchParams.get('page') ?? "1");
-const itemsPerPage = 10;
-const start = (currentPage - 1) * itemsPerPage;
-const end = start + itemsPerPage;
-const numPages = Math.ceil(votes.length / itemsPerPage);
-let visibleRows = votes.slice(start, end);
+let filteredRows = filtration(url, votes);
+let [visibleRows, numPages] = pagination(url, filteredRows);
 
 ---
 <div class="space-y-4">
