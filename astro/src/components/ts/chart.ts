@@ -68,7 +68,7 @@ var options = {
       var dpi = series.dataPointIndex;
 
       return (
-        '<div class="arrow_box rounded-lg border bg-background p-2 shadow-sm">' +
+        '<div class="arrow_box rounded-lg border-input bg-background p-2 shadow-sm">' +
         '<div class="grid grid-cols-2 gap-2">' +
         '<div class="flex flex-col">' +
         `<span style="font-size: 0.70rem; text-transform: uppercase; color: ${mutedForeground}">For</span>` +

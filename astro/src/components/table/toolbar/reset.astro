@@ -1,0 +1,29 @@
+---
+import Button from "../../core/button.astro"
+import { Cross2 } from '@astropub/icons'
+
+---
+<div id="reset-div" class="hidden">
+    <Button id="reset-button" variant="ghost" className="h-8 px-2 lg:px-3">
+        Reset
+        <Cross2 className="w-4 h-4 ml-2" />
+    </Button>
+</div>
+
+
+<script>
+    var url = window.location.href;
+    let arr = url.split('?')
+    // alert(arr.length)
+
+    if (arr.length > 1){
+        document.getElementById('reset-div')?.classList.remove('hidden');
+    }
+
+    document.getElementById('reset-button')?.addEventListener('click', () => {
+        const url = new URL(window.location.href);
+        url.search = '';
+        window.history.replaceState({}, '', url);
+        window.location.reload();
+    })
+</script>

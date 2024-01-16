@@ -1,6 +1,6 @@
 ---
 import Button from '../../core/button.astro'
-import Seperator from '../../core/seperator.astro'
+import Separator from '../../core/separator.astro'
 
 import {cn} from '../../../../common/utils'
 import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
@@ -31,12 +31,12 @@ const formatVariants = [
             <span class="mt-0.5">Download</span>
         </Button>
         <DropdownItems data-state="open" class={cn(
-        'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md right-0 top-10',
+        'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border border-input bg-popover p-1 text-popover-foreground shadow-md right-0 top-10',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
         "w-[150px]"
       )}>
             <span class="px-2 py-1.5 text-sm font-semibold">What Format?</span>
-            <Seperator className="my-2"/>
+            <Separator className="my-2"/>
             {formatVariants.map((variant) => (
                 <Button key={variant.format} className="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" variant="ghost">
                   {variant.name}

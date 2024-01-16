@@ -15,16 +15,13 @@ import { filtration } from '../../../common/filtration';
 
 const url = new URL(Astro.request.url);
 
-//filter
 let filteredRows = filtration(url, rows);
-
 let [visibleRows, numPages] = pagination(url, filteredRows);
 
 let queryHasRows: boolean = true;
 if (visibleRows.length === 0) {
   queryHasRows = false;
 }
-console.log(numPages)
 ---
 <div class="space-y-4">
   <Toolbar proposal={true}/>
