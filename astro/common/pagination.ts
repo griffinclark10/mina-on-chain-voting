@@ -7,5 +7,5 @@ export function pagination(url: URL, filteredRows: RowType | VotesType) {
     const end = start + itemsPerPage;
     const numPages = Math.ceil(filteredRows.length / itemsPerPage) < 1 ? 1 : Math.ceil(filteredRows.length / itemsPerPage);
     let visibleRows = filteredRows.slice(start, end);
-    return [visibleRows, numPages];
+    return { visibleRows, numPages };
 }
