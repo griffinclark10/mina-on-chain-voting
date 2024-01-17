@@ -16,7 +16,7 @@ import NoResults from './cols/no-results.astro';
 
 const url = new URL(Astro.request.url);
 let filteredRows = filtration(url, votes);
-let [visibleRows, numPages] = pagination(url, filteredRows);
+let { visibleRows, numPages } = pagination(url, filteredRows);
 let queryHasRows: boolean = true;
 if (visibleRows.length === 0) {
   queryHasRows = false;
@@ -24,8 +24,7 @@ if (visibleRows.length === 0) {
 ---
 <div class="space-y-4">
     <Toolbar proposal={false}/>
-    <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible z-0">
-        <table class="w-full caption-bottom text-sm" id="data-table">
+        <table class="w-full caption-bottom text-sm border border-secondary rounded-lg overflow-y-visible z-0" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
                 {queryHasRows ? visibleRows.map((vote) => (
@@ -42,6 +41,5 @@ if (visibleRows.length === 0) {
                 )}
             </tbody>
         </table>
-    </div>
     <Pagination numPages={numPages}/>
 </div>

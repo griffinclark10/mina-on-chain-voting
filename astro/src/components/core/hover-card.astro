@@ -1,8 +1,8 @@
-<div class="relative">
+<div class="">
     <button class="hover-card-trigger ">
         <slot name="hover-trigger"/>
     </button>
-    <div class="hover-card-content invisible opacity-0 z-50">
+    <div class="hover-card-content hidden absolute z-50 transform -translate-x-1/4 ">
         <slot name="hover-content"/>
     </div>    
 </div>
@@ -13,12 +13,12 @@
         var hoverCardContents = document.querySelectorAll('.hover-card-content');
         hoverCardTriggers.forEach((trigger, index) => {
             trigger.addEventListener('mouseover', function() {
-                hoverCardContents[index]?.classList.remove('invisible', 'opacity-0');
-                hoverCardContents[index]?.classList.add('visible', 'opacity-100');
+                hoverCardContents[index]?.classList.remove('hidden');
+                hoverCardContents[index]?.classList.add('block');
             });
             trigger.addEventListener('mouseout', function() {
-                hoverCardContents[index]?.classList.remove('visible', 'opacity-100');
-                hoverCardContents[index]?.classList.add('invisible', 'opacity-0');
+                hoverCardContents[index]?.classList.remove('block');
+                hoverCardContents[index]?.classList.add('hidden');
             });
         });
     });

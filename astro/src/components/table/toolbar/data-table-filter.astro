@@ -58,7 +58,7 @@ const { column, title, options } = Astro.props as Props;
         dropdowns.forEach(dropdown => {
             const title = dropdown.getAttribute('data-title');
             setupDropdown(dropdown, title);
-            dropdown.addEventListener('click', () => {
+            dropdown.addEventListener('click', (event) => {
                 event.stopPropagation();
             });
         });

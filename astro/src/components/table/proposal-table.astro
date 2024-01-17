@@ -16,7 +16,7 @@ import { filtration } from '../../../common/filtration';
 const url = new URL(Astro.request.url);
 
 let filteredRows = filtration(url, rows);
-let [visibleRows, numPages] = pagination(url, filteredRows);
+let {visibleRows, numPages} = pagination(url, filteredRows);
 
 let queryHasRows: boolean = true;
 if (visibleRows.length === 0) {
