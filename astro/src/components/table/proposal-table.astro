@@ -9,13 +9,19 @@ import Toolbar from './toolbar/toolbar.astro';
 import  Pagination from './pagination.astro';
 import NoResults from '../table/cols/no-results.astro';
 
-import { rows } from '../../../common/fakedata';
 import { pagination } from '../../../common/pagination';
 import { filtration } from '../../../common/filtration';
+import { GetProposalListResult } from '../../../common/store';
+
+interface ProposalTableProps {
+  proposals: GetProposalListResult;
+}
+
+const { proposals } = Astro.props as ProposalTableProps;
 
 const url = new URL(Astro.request.url);
 
-let filteredRows = filtration(url, rows);
+let filteredRows: GetProposalListResult = filtration(url, proposals);
 let {visibleRows, numPages} = pagination(url, filteredRows);
 
 let queryHasRows: boolean = true;
@@ -34,9 +40,9 @@ if (visibleRows.length === 0) {
             <Key key={row.key}/>
             <Title title={row.title} category={row.category}/>
             <Status status={row.status}/>
-            <Timestamp time={row.votingStart} proposal={true}/>
-            <Timestamp time={row.votingEnd} proposal={true}/>
-            <Results status={row.status} id={row.key} />
+            <Timestamp time={row.start_time} proposal={true}/>
+            <Timestamp time={row.end_time} proposal={true}/>
+            <Results status={row.status} id={row.id} />
           </tr>
         )) : (
           <NoResults />

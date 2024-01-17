@@ -1,6 +1,7 @@
 import { RowType, VotesType } from "./fakedata";
+import { GetProposalListResult } from "./store";
 
-export function filtration(url: URL, rows: RowType | VotesType) {
+export function filtration(url: URL, rows: GetProposalListResult | VotesType) {
     let filteredRows = rows;
     const status = url.searchParams.getAll('Status');
     if (isRowType(rows)) {

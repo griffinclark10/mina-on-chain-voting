@@ -1,6 +1,7 @@
-import { RowType, VotesType } from './fakedata';
+import { VotesType } from './fakedata';
+import { GetProposalListResult } from './store';
 
-export function pagination(url: URL, filteredRows: RowType | VotesType) {
+export function pagination(url: URL, filteredRows: GetProposalListResult | VotesType) {
     const currentPage: number = parseInt(url.searchParams.get('page') ?? "1");
     const itemsPerPage = 10;
     const start = (currentPage - 1) * itemsPerPage;

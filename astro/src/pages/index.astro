@@ -3,8 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/page-header/page-header.astro";
 import PageHeaderHeading from "../components/page-header/heading.astro";
 import PageHeaderDescription from "../components/page-header/description.astro";
-import Table from "../components/table/proposal-table.astro";
-import HoverCard from "../components/core/hover-card.astro";
+import ProposalTable from "../components/table/proposal-table.astro";
+
+import { getProposalList } from "../../common/store";
+
+import { writeFile } from 'fs/promises';
+
+const proposals = await getProposalList();
+try {
+  const firstXProposals = proposals.slice(0, 10);
+  await writeFile('proposals.json', JSON.stringify(firstXProposals, null, 2), 'utf8');
+  console.log('File written successfully');
+} catch (error) {
+  console.error('Error writing file:', error);
+}
 ---
 <Layout>
 	<div class="container relative">
@@ -18,10 +30,7 @@ import HoverCard from "../components/core/hover-card.astro";
 			<PageHeaderDescription>View and track the progress of Mina Improvement Proposals (MIPs).</PageHeaderDescription>
 		</PageHeader>
 	
-		<Table />
-
+		<ProposalTable proposals={proposals}/>
 	</div>
-	
-
 </Layout>
 
