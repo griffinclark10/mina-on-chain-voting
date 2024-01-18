@@ -1,4 +1,4 @@
-import { GetProposalListResult, GetProposalResultsResult } from "./store";
+import { GetProposalListResult, GetProposalResultsResult } from "common/store";
 
 type ProposalType = GetProposalListResult;
 type VoteType = GetProposalResultsResult['votes'];
@@ -22,7 +22,6 @@ export function filtration(url: URL, rows: ProposalType | VoteType) {
 }
 
 function filterItems<T>(items: T[], filters: Record<string, string[]>): T[] {
-    console.log(filters);
     return items.filter(item => 
         Object.entries(filters).every(([key, values]) => 
             values.length === 0 || values.includes(item[key])
