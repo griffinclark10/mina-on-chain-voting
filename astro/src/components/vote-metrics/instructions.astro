@@ -12,6 +12,7 @@ interface Props extends CardProps {
 }
 
 const { memo, className} = Astro.props as Props;
+console.log(memo);
 ---
 <Card className={className}>
     <CardHeader className="space-y-0 pb-1">
@@ -19,7 +20,7 @@ const { memo, className} = Astro.props as Props;
         <p class="text-xs text-muted-foreground">I want to vote...</p>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4 mt-1">
-        <DialogButton isFor="For" />
-        <DialogButton isFor="Against" />
+        <DialogButton direction="For" memo={memo}/>
+        <DialogButton direction="Against" memo={memo}/>
       </CardContent>
 </Card>

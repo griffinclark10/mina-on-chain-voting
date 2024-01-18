@@ -2,20 +2,19 @@
 import Dialog from "./dialog.astro";
 import Button from "../core/button.astro";
 
-//how am I going to get the memo all the way down to the dialog? (e.g. MI4)
-
 type ModalButtonProps = {
-  isFor: 'For' | 'Against';
+  direction: 'For' | 'Against';
+  memo: string;
   className?: string;
 };
 
-const { isFor, className, ...props } = Astro.props as ModalButtonProps;
-const dialogId = isFor;
+const { direction, memo, className, ...props } = Astro.props as ModalButtonProps;
+const dialogId = direction;
 ---
-<Button id={"open-dialog-button-" + isFor} size="sm" className={className} {...props} data-isfor={isFor}> 
-  {isFor}
+<Button id={"open-dialog-button-" + direction} size="sm" className={className} {...props} data-direction={direction}> 
+  {direction}
 </Button>
-<Dialog id={dialogId} memo="MIP1"/>
+<Dialog id={dialogId} memo={memo}/>
 
 <script type="module">
   document.addEventListener('DOMContentLoaded', () => {
@@ -33,10 +32,10 @@ const dialogId = isFor;
       }
     }
 
-    const buttons = document.querySelectorAll('[data-isfor]');
+    const buttons = document.querySelectorAll('[data-direction]');
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-        const isForValue = button.getAttribute('data-isfor');
+        const isForValue = button.getAttribute('data-direction');
         const dialogId = isForValue;
         openDialog(dialogId);
       });
