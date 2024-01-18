@@ -1,7 +1,8 @@
 ---
 import { cn } from '../../../common/utils';
-import { proposalHeaders, votesHeaders } from '../../../common/fakedata';
 
+export const proposalHeaders = ['Key', 'Title', 'Status', 'Voting Start', 'Voting End', ''];
+export const votesHeaders = ['Height', 'Timestamp', 'Account', 'Hash', 'Vote', 'Status'];
 interface HeaderProps {
   proposal: boolean;
   className?: string;
