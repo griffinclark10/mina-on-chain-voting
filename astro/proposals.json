@@ -1,0 +1,41 @@
+[
+  {
+    "id": 4,
+    "key": "MIP4",
+    "start_time": 1684562400000,
+    "end_time": 1685253600000,
+    "ledger_hash": "jw8dXuUqXVgd6NvmpryGmFLnRv1176oozHAro8gMFwj8yuvhBeS",
+    "category": "Core",
+    "version": "V2",
+    "title": "Easier zkApp programmability on mainnet",
+    "description": "Adding programmable smart contracts (zkApps) to the Mina protocol.",
+    "url": "https://github.com/MinaProtocol/MIPs/blob/main/MIPS/mip-zkapps.md",
+    "status": "Completed"
+  },
+  {
+    "id": 3,
+    "key": "MIP3",
+    "start_time": 1684562400000,
+    "end_time": 1685253600000,
+    "ledger_hash": "jw8dXuUqXVgd6NvmpryGmFLnRv1176oozHAro8gMFwj8yuvhBeS",
+    "category": "Cryptography",
+    "version": "V2",
+    "title": "Kimchi, a new proof system",
+    "description": "Kimchi is an update to the proof system currently used by Mina.",
+    "url": "https://github.com/MinaProtocol/MIPs/blob/main/MIPS/mip-kimchi.md",
+    "status": "Completed"
+  },
+  {
+    "id": 1,
+    "key": "MIP1",
+    "start_time": 1672848000000,
+    "end_time": 1673685000000,
+    "ledger_hash": "jxQXzUkst2L9Ma9g9YQ3kfpgB5v5Znr1vrYb1mupakc5y7T89H8",
+    "category": "Core",
+    "version": "V1",
+    "title": "Remove supercharged rewards",
+    "description": "Removing the short-term incentive of supercharged rewards.",
+    "url": "https://github.com/MinaProtocol/MIPs/blob/main/MIPS/mip-remove-supercharged-rewards.md",
+    "status": "Completed"
+  }
+]

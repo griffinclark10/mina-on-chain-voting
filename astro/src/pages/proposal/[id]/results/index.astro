@@ -7,55 +7,59 @@ import SmallerPageHeaderDescription from '../../../../components/page-header/sma
 import VotesMetrics from '../../../../components/vote-metrics/vote-metrics.astro';
 import Separator from '../../../../components/core/separator.astro';
 import VotesTable from '../../../../components/table/votes-table.astro';
+import { GetProposalListResult, getProposal, getProposalList } from '../../../../../common/store';
 
 export async function getStaticPaths() {
-    const ids = ['1', '2', '3', '4']; 
+    const proposals: GetProposalListResult = await getProposalList();
+    const ids: number[] = proposals.map(proposal => proposal.id.toString());
     return ids.map(id => {
         return { params: { id } };
     });
 }
 
 const id = Astro.params.id;
+
+const proposal = await getProposal(id);
 ---
 <Layout>
     <div class="container relative">
         <PageHeader className="hidden md:block pb-6">
-            <PageHeaderHeading>Easier zkApp programmability on mainnet</PageHeaderHeading>
-            <PageHeaderDescription>Adding programmable smart contracts (zkApps) to the Mina protocol.
+            <PageHeaderHeading>{proposal.title}</PageHeaderHeading>
+            <PageHeaderDescription>{proposal.description}
             </PageHeaderDescription>
             <SmallerPageHeaderDescription className="text-base max-w-[1000px]">
                 Authoritative document: {' '}
                 <a
-                    href="https://google.com"
+                    href={proposal.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="text-logoOrange"
                 >
-                    Google.com
+                    {proposal.url}
                 </a>
             </SmallerPageHeaderDescription>
         </PageHeader>
     
         <PageHeader className="block md:hidden pb-6 text-center">
-            <PageHeaderHeading className="text-2xl">Easier zkApp programmability on mainnet</PageHeaderHeading>
-            <PageHeaderDescription className="text-base">Adding programmable smart contracts (zkApps) to the Mina protocol.</PageHeaderDescription>
+            <PageHeaderHeading className="text-2xl">{proposal.title}</PageHeaderHeading>
+            <PageHeaderDescription className="text-base">{proposal.description}</PageHeaderDescription>
             <SmallerPageHeaderDescription className="text-base max-w-[1000px]">
                 Authoritative document: {' '}
                 <a
-                    href="https://google.com"
+                    href={proposal.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="text-logoOrange"
                 >
-                    Google.com
+                {proposal.url}
                 </a>
             </SmallerPageHeaderDescription>
         </PageHeader>
 
         <div class="flex flex-col gap-2">
-            <VotesMetrics variant="results" />
+            <VotesMetrics variant="results" proposal={proposal}/>
             <Separator />
-            <VotesTable />
+            <VotesTable votes={proposal.votes}/>
         </div>
     </div>
 </Layout>

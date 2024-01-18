@@ -8,12 +8,13 @@ import Vote from './cols/votes/vote.astro';
 import Status from './cols/votes/status.astro';
 import Pagination from './pagination.astro';
 import Toolbar from './toolbar/toolbar.astro';
-
-import { votes } from '../../../common/fakedata';
-import { pagination } from '../../../common/pagination';
-import { filtration } from '../../../common/filtration';
 import NoResults from './cols/no-results.astro';
 
+import { pagination } from '../ts/pagination';
+import { filtration } from '../ts/filtration';
+import { GetProposalResultsResult } from '../../../common/store';
+
+const { votes } = Astro.props as { votes: GetProposalResultsResult['votes'] };
 const url = new URL(Astro.request.url);
 let filteredRows = filtration(url, votes);
 let { visibleRows, numPages } = pagination(url, filteredRows);
@@ -29,12 +30,12 @@ if (visibleRows.length === 0) {
             <tbody class="[&_tr:last-child]:border-0">
                 {queryHasRows ? visibleRows.map((vote) => (
                     <tr class="border-b border-secondary transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                        <Height height={vote.Height} />
-                        <Timestamp time={vote.Timestamp} proposal={false}/>
-                        <Account account={vote.Account} />
-                        <Hash hash={vote.Hash} />
-                        <Vote direction={vote.Vote} />
-                        <Status status={vote.Status} />
+                        <Height height={vote.height} />
+                        <Timestamp time={vote.timestamp} proposal={false}/>
+                        <Account account={vote.account} />
+                        <Hash hash={vote.hash} />
+                        <Vote direction={vote.direction} />
+                        <Status status={vote.status} />
                     </tr>
                 )) : (
                     <NoResults />

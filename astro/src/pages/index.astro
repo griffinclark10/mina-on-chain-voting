@@ -10,13 +10,7 @@ import { getProposalList } from "../../common/store";
 import { writeFile } from 'fs/promises';
 
 const proposals = await getProposalList();
-try {
-  const firstXProposals = proposals.slice(0, 10);
-  await writeFile('proposals.json', JSON.stringify(firstXProposals, null, 2), 'utf8');
-  console.log('File written successfully');
-} catch (error) {
-  console.error('Error writing file:', error);
-}
+
 ---
 <Layout>
 	<div class="container relative">
