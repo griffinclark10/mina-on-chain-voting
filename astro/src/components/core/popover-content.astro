@@ -1,6 +1,6 @@
 ---
 import {cn} from '../../../common/utils'
-import { MagnifyingGlass, Checkbox } from '@astropub/icons';
+import { Check } from '@astropub/icons';
 import { Options } from '../table/toolbar/data-table-filter.astro'
 
 const { title, options, align, className, sideOffset } = Astro.props as {
@@ -25,9 +25,9 @@ const isFiltered: boolean = false;
 					<li data-value={option.value} id={option.value}
 					class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
 						<div data-checkboxValue={option.value}
-							class={'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&_svg]:invisible'}
+							class='mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&_svg]:invisible'
 						>
-							<Checkbox  />
+							<Check />
 						</div>
 						<label class="relative flex cursor-default select-none items-center">
 							{option.icon ? <option.icon class="mr-2 h-4 w-4 text-muted-foreground" /> : null}
