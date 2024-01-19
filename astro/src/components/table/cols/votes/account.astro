@@ -12,7 +12,7 @@ const suffix = account.slice(-4);
         <Badge slot="hover-trigger" variant="outline" className="bg-gray-200/10 dark:bg-gray-500/10 border-input">
             <span class="select-none">{`${prefix}...${suffix}`}</span>
         </Badge>
-        <div slot="hover-content" class="flex absolute top-full left-1/2 transform -translate-x-1/2 transition-opacity delay-500 z-40 w-fit rounded-md border border-input bg-background p-4 text-secondary-foreground shadow-md">
+        <div slot="hover-content" class="transition-opacity delay-500 z-40 w-fit rounded-md border border-input bg-background p-4 text-secondary-foreground shadow-md">
             <span class="text-xs font-medium">{account}</span>
         </div>
     </HoverCard>

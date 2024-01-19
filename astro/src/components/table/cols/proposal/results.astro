@@ -8,8 +8,8 @@ const buttonText = status === 'Completed' ? 'Results' : 'Go Vote';
 <td class="p-2 align-middle">
     <a href={
         status === 'Completed'
-          ? `/proposal/${id}/results?page=1`
-          : `/proposal/${id}?page=1`
+          ? `/proposal/${id}/results`
+          : `/proposal/${id}`
       }>
         <Button className="px-0" variant="ghost">
           <div class="flex items-center">
