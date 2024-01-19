@@ -10,11 +10,13 @@ import { proposalCategoryOptions } from "../cols/proposal/title.astro";
 import { directions } from '../cols/votes/vote.astro'
 import { votesTableStatuses } from "../cols/votes/status.astro";
 
-const { proposal } = Astro.props as { proposal: boolean}
+import { GetProposalListResult, GetProposalResultsResult } from '../../../../common/store';
 
-const filter1 = proposal ? proposalTableStatuses : votesTableStatuses;
-const filter2 = proposal ? proposalCategoryOptions : directions;
-const titles: string[] = proposal ? ['Status', 'Category'] : ['Status', 'Vote'];
+const { isProposal, filteredData } = Astro.props as { isProposal: boolean, filteredData: GetProposalListResult | GetProposalResultsResult['votes'] };
+
+const filter1 = isProposal ? proposalTableStatuses : votesTableStatuses;
+const filter2 = isProposal ? proposalCategoryOptions : directions;
+const titles: string[] = isProposal ? ['Status', 'Category'] : ['Status', 'Vote'];
 ---
 <div class="flex items-center justify-between">
     <div class="flex flex-1 items-center space-x-2">
@@ -24,5 +26,5 @@ const titles: string[] = proposal ? ['Status', 'Category'] : ['Status', 'Vote'];
         <ApplyFilterButton />
         <Reset />
     </div>
-    <Download />
+    <Download data={filteredData}/>
 </div>

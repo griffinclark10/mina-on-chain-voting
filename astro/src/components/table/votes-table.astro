@@ -24,7 +24,7 @@ if (visibleRows.length === 0) {
 }
 ---
 <div class="space-y-4">
-    <Toolbar proposal={false}/>
+    <Toolbar isProposal={false} filteredData={filteredRows ? filteredRows : votes}/>
         <table class="w-full caption-bottom text-sm border border-secondary rounded-lg overflow-y-visible z-0" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">

@@ -6,11 +6,10 @@ import {cn} from '../../../../common/utils'
 import {Astronav, Dropdown, DropdownItems} from "astro-navbar";
 
 import { Download } from '@astropub/icons';
+import { GetProposalListResult, GetProposalResultsResult } from '../../../../common/store';
 
-const {table, className, sideOffset} = Astro.props as {
-    table: string,
-    className: string,
-    sideOffset: string
+const { data } = Astro.props as {
+    data: GetProposalListResult | GetProposalResultsResult['votes'],
 }
 
 const formatVariants = [
@@ -26,7 +25,7 @@ const formatVariants = [
 ---
 <Astronav closeOnClick>
     <Dropdown class="relative">
-        <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
+        <Button id="download-button" variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex" data-filteredJSON={JSON.stringify(data)}>
             <Download class="w-4 h-4 mr-2" />
             <span class="mt-0.5">Download</span>
         </Button>
@@ -38,7 +37,7 @@ const formatVariants = [
             <span class="px-2 py-1.5 text-sm font-semibold">What Format?</span>
             <Separator className="my-2"/>
             {formatVariants.map((variant) => (
-                <Button key={variant.format} className="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" variant="ghost">
+                <Button key={variant.format} id={"download-" + variant.format} className="relative flex cursor-default select-none items-center rounded-sm w-full px-2 py-1.5 text-sm outline-none transition-colors hover:bg-secondary focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" variant="ghost">
                   {variant.name}
                 </Button>
             ))}
@@ -46,6 +45,22 @@ const formatVariants = [
     </Dropdown>
 </Astronav>
 
+<script>
+  import downloadFile from '../../ts/download';
+  let data: string;
+  document.addEventListener('DOMContentLoaded', () => {
+    const download_button = document.getElementById('download-button')
+    if (download_button) {
+      data = download_button.getAttribute('data-filteredJSON') ? download_button.getAttribute('data-filteredJSON')! : '';
+    } else { 
+      return
+    }
+    const csvButton = document.getElementById('download-csv');
+    const xlsxButton = document.getElementById('download-xlsx');
 
+    csvButton?.addEventListener('click', () => downloadFile(data, 'csv'));
+    xlsxButton?.addEventListener('click', () => downloadFile(data, 'xlsx'));
+});
+</script>
 
 

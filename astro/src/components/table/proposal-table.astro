@@ -30,7 +30,7 @@ if (visibleRows.length === 0) {
 }
 ---
 <div class="space-y-4">
-  <Toolbar proposal={true}/>
+  <Toolbar isProposal={true} filteredData={ filteredRows ? filteredRows : proposals }/>
   <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
     <table class="w-full caption-bottom text-sm" id="data-table">
       <TableHeader proposal={true}/>
