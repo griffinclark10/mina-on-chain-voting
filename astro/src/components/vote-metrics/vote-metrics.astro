@@ -10,11 +10,11 @@ import VotesMetricsPeriod from './period.astro'
 type Variants =
   | {
       variant: 'default';
-      proposal?: GetProposalResult;
+      proposal: GetProposalResult;
     }
   | {
       variant: 'results';
-      proposal?: GetProposalResultsResult;
+      proposal: GetProposalResultsResult;
     };
 
 type Props = Variants;
@@ -23,33 +23,33 @@ const { variant, proposal } = Astro.props as Props;
 const pro: string = "Completed";
 ---
 <div class="grid gap-1.5 grid-cols-2 grid-rows-4 md:grid-cols-4 md:grid-rows-3 xl:grid-cols-5 xl:grid-rows-2">
-  <VoteMetricsChart className="row-span-2 col-span-2 md:col-span-4 xl:col-span-3"/>
+  <VoteMetricsChart className="row-span-2 col-span-2 md:col-span-4 xl:col-span-3" data={proposal.metrics}/>
 
   <VoteMetricsTotalVotes
         className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-4"
-        total={500} 
+        total={proposal.votes.length} 
   />
   {variant === 'results' && pro === 'Completed' ? (
     <VoteMetricsTotalStake 
       className='row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5'
       total={3924818923751} />
     ) : (
-    <VoteMetricsInstructions className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5" memo=""/>
+    <VoteMetricsInstructions className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5" memo={proposal.key}/>
   )}
 
   {variant === 'results' && pro === 'Completed' ? (
     <VoteMetricsResults
-            className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
-            total={100}
-            positive={100}
-            negative={0}
+      className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
+      total={100}
+      positive={100}
+      negative={0}
     />
   ) : (
     <VotesMetricsPeriod
       className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
-      startTime={1698253600000}
-      endTime={1798253600000}
-      status="Pending"
+      startTime={proposal.start_time}
+      endTime={proposal.end_time}
+      status={proposal.status}
     />
   )}
 </div>
