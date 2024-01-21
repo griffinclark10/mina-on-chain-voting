@@ -10,3 +10,29 @@ const { placeholder, className } = Astro.props as { placeholder: string, classNa
       className
     )}
 >
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('searchInput');
+
+  function setInputValueFromURL() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const searchValue = searchParams.get('search');
+    if (searchValue) {
+      searchInput.value = searchValue;
+    }
+  }
+  setInputValueFromURL();
+  
+  searchInput?.addEventListener('blur', function(event) {
+    const searchValue = event.target ? event.target.value : '';
+    const searchParams = new URLSearchParams();
+    if (searchValue) {
+      searchParams.set('search', searchValue);
+    } else {
+      searchParams.delete('search');
+    }
+    window.history.pushState(null, '', `?${searchParams}`);
+  });
+});
+</script>
