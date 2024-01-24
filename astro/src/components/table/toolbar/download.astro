@@ -17,10 +17,6 @@ const formatVariants = [
     name: 'CSV',
     format: 'csv',
   },
-  {
-    name: 'XLSX',
-    format: 'xlsx',
-  },
 ] as const;
 ---
 <Astronav closeOnClick>
@@ -53,13 +49,11 @@ const formatVariants = [
     if (download_button) {
       data = download_button.getAttribute('data-filteredJSON') ? download_button.getAttribute('data-filteredJSON')! : '';
     } else { 
-      return
+      return;
     }
     const csvButton = document.getElementById('download-csv');
-    const xlsxButton = document.getElementById('download-xlsx');
 
     csvButton?.addEventListener('click', () => downloadFile(data, 'csv'));
-    xlsxButton?.addEventListener('click', () => downloadFile(data, 'xlsx'));
 });
 </script>
 

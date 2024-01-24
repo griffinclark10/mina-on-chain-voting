@@ -1,5 +1,3 @@
-import * as xslx from 'xslx';
-
 export default function downloadFile(data: string, format: string) {
     let fileContent;
     let mimeType;
@@ -12,8 +10,6 @@ export default function downloadFile(data: string, format: string) {
         mimeType = 'text/csv';
         fileExtension = 'csv';
     } else if (format === 'xslx') {
-        // Conversion for xslx (requires a library or a custom function)
-        fileContent = convertToxslx(dataArray);
         mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
         fileExtension = 'xslx';
     } else {
@@ -44,21 +40,6 @@ function convertToCSV(data: any[]) {
     } catch (error) {
         console.error('Error parsing JSON string:', error);
         return '';
-    }
-}
-
-function convertToxslx(data: any[]) {
-    try {
-        if (!Array.isArray(data)) {
-            throw new Error("Parsed JSON is not an array.");
-        }
-        const workbook = xslx.utils.book_new();
-        const worksheet = xslx.utils.json_to_sheet(data);
-
-        xslx.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-        return xslx.write(workbook, { bookType: 'xslx', type: 'array' });
-    } catch (error) {
-        console.error('Error processing data:', error);
     }
 }
 
