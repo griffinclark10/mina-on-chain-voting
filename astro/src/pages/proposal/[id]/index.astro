@@ -7,7 +7,7 @@ import VotesMetrics from '../../../components/vote-metrics/vote-metrics.astro';
 import Separator from '../../../components/core/separator.astro';
 import VotesTable from '../../../components/table/votes-table.astro';
 
-import { GetProposalListResult, getProposal, getProposalList } from '../../../../common/store';
+import { GetProposalListResult, getProposalResults, getProposalList } from '../../../../common/store';
 
 export const prerender = true;
 
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 const id = Astro.params.id;
 
-const proposal = await getProposal(id);
+const proposal = await getProposalResults(id);
 
 ---
 <Layout>

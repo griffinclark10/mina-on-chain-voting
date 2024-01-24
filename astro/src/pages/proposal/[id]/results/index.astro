@@ -7,7 +7,7 @@ import SmallerPageHeaderDescription from '../../../../components/page-header/sma
 import VotesMetrics from '../../../../components/vote-metrics/vote-metrics.astro';
 import Separator from '../../../../components/core/separator.astro';
 import VotesTable from '../../../../components/table/votes-table.astro';
-import { GetProposalListResult, getProposal, getProposalList } from '../../../../../common/store';
+import { GetProposalListResult, getProposalResults, getProposalList } from '../../../../../common/store';
 
 export async function getStaticPaths() {
     const proposals: GetProposalListResult = await getProposalList();
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
 const id = Astro.params.id;
 
-const proposal = await getProposal(id);
+const proposal = await getProposalResults(id);
 ---
 <Layout>
     <div class="container relative">

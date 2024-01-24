@@ -32,7 +32,7 @@ const pro: string = "Completed";
   {variant === 'results' && pro === 'Completed' ? (
     <VoteMetricsTotalStake 
       className='row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5'
-      total={3924818923751} />
+      total={proposal.total_stake_weight} />
     ) : (
     <VoteMetricsInstructions className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-5" memo={proposal.key}/>
   )}
@@ -40,9 +40,9 @@ const pro: string = "Completed";
   {variant === 'results' && pro === 'Completed' ? (
     <VoteMetricsResults
       className="col-span-2 md:row-start-3 xl:row-start-2 xl:col-start-4"
-      total={100}
-      positive={100}
-      negative={0}
+      total={proposal.total_stake_weight}
+      positive={proposal.positive_stake_weight}
+      negative={proposal.negative_stake_weight}
     />
   ) : (
     <VotesMetricsPeriod
