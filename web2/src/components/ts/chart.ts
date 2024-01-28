@@ -8,10 +8,12 @@ const style = getComputedStyle(root);
 const foreground = style.getPropertyValue('--foreground');
 const mutedForeground = style.getPropertyValue('--muted-foreground').trim();
 
-export function processData(data: Array<VoteMetrics>): { FOR: number[], AGAINST: number[], DATE: string[] } {
-  const FOR: number[] = [], AGAINST: number[] = [], DATE: string[] = [];
+export function processData(data: Array<VoteMetrics>): { FOR: number[]; AGAINST: number[]; DATE: string[] } {
+  const FOR: number[] = [],
+    AGAINST: number[] = [],
+    DATE: string[] = [];
 
-  data.forEach(item => {
+  data.forEach((item) => {
     FOR.push(item.FOR);
     AGAINST.push(item.AGAINST);
     DATE.push(item.DATE);
@@ -19,7 +21,6 @@ export function processData(data: Array<VoteMetrics>): { FOR: number[], AGAINST:
 
   return { FOR, AGAINST, DATE };
 }
-
 
 function initChart() {
   const chartElement = document.getElementById('chart');
@@ -82,7 +83,7 @@ function initChart() {
       tooltip: {
         custom: function (series: any) {
           var dpi = series.dataPointIndex;
-    
+
           return (
             '<div class="arrow_box rounded-lg border-input bg-background p-2 shadow-sm">' +
             '<div class="grid grid-cols-2 gap-2">' +

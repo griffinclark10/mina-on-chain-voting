@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Home Page Tests', () => {
-
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4321');
   });
@@ -23,5 +22,4 @@ test.describe('Home Page Tests', () => {
     const descriptionMobile = page.locator('.md\\:hidden >> h2');
     await expect(descriptionMobile).toContainText('View and track the progress of Mina Improvement Proposals (MIPs).');
   });
-
 });
