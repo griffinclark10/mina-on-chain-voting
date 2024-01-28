@@ -15,7 +15,7 @@ const { total, className }: Props = Astro.props;
       <CardTitle className="text-sm font-normal">Total Stake Participated</CardTitle>
     </CardHeader>
     <CardContent>
-      <div class="text-xl xl:text-2xl font-bold">
+      <div class="total-stake text-xl xl:text-2xl font-bold">
         {Number.parseFloat(total.toFixed(2)).toLocaleString('en-EU')}
       </div>
       <p class="text-xs text-muted-foreground">± 0.005</p>

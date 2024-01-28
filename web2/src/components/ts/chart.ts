@@ -8,7 +8,7 @@ const style = getComputedStyle(root);
 const foreground = style.getPropertyValue('--foreground');
 const mutedForeground = style.getPropertyValue('--muted-foreground').trim();
 
-function processData(data: Array<VoteMetrics>): { FOR: number[], AGAINST: number[], DATE: string[] } {
+export function processData(data: Array<VoteMetrics>): { FOR: number[], AGAINST: number[], DATE: string[] } {
   const FOR: number[] = [], AGAINST: number[] = [], DATE: string[] = [];
 
   data.forEach(item => {

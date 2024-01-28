@@ -7,8 +7,6 @@ import ProposalTable from "../components/table/proposal-table.astro";
 
 import { getProposalList } from "../../common/store";
 
-import { writeFile } from 'fs/promises';
-
 const proposals = await getProposalList();
 
 ---

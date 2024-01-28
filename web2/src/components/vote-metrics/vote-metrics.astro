@@ -26,7 +26,7 @@ const pro: string = "Completed";
   <VoteMetricsChart className="row-span-2 col-span-2 md:col-span-4 xl:col-span-3" data={proposal.metrics}/>
 
   <VoteMetricsTotalVotes
-        className="row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-4"
+        className="total-votes row-start-4 md:row-start-3 xl:row-start-1 xl:col-start-4"
         total={proposal.votes.length} 
   />
   {variant === 'results' && pro === 'Completed' ? (

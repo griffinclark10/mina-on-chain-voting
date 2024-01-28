@@ -39,7 +39,7 @@ const percentage = ((nowInMillis - startTime) / (endTime - startTime)) * 100;
         className="h-5 rounded-md"
         value={percentage === -Infinity ? 0 : percentage > 100 ? 100 : percentage}
       />
-      <div class="flex justify-between items-center">
+      <div class="date-vals flex justify-between items-center">
         <p class="text-xs text-muted-foreground"> {startDate.format('YYYY-MM-DD | hh:mm A').toString()} UTC</p>
         <p class="text-xs text-muted-foreground"> {endDate.format('YYYY-MM-DD | hh:mm A').toString()} UTC</p>
       </div>
