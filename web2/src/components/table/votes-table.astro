@@ -25,7 +25,8 @@ if (visibleRows.length === 0) {
 ---
 <div class="space-y-4">
     <Toolbar isProposal={false} filteredData={filteredRows ? filteredRows : votes}/>
-        <table class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible" id="data-table">
+    <div class="border border-secondary rounded-lg w-full overflow-x-scroll overflow-y-visible">
+        <table class="w-full caption-bottom text-sm" id="data-table">
             <TableHeader proposal={false} />
             <tbody class="[&_tr:last-child]:border-0">
                 {queryHasRows ? visibleRows.map((vote) => (
@@ -42,5 +43,6 @@ if (visibleRows.length === 0) {
                 )}
             </tbody>
         </table>
+    </div>
     <Pagination numPages={numPages}/>
 </div>
